@@ -47,7 +47,7 @@ var j = schedule.scheduleJob('00 00 17 * * *', function(){
 		}) 
 });
 
-var k = schedule.scheduleJob('17 * * *', function(){
+var k = schedule.scheduleJob('17 * * * *', function(){
 	  console.log('17:Testing');
 			var request = require('request');
 			request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
