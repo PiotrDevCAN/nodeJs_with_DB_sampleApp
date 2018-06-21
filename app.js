@@ -31,7 +31,7 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 
 var schedule = require('node-schedule');
 
-var j = schedule.scheduleJob('00 00 17 * * *', function(){
+var j = schedule.scheduleJob('18 * * *', function(){
   console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 		var request = require('request');
 		request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
