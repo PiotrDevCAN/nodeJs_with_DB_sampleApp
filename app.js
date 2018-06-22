@@ -31,7 +31,8 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 
 var schedule = require('node-schedule');
 
-var j = schedule.scheduleJob('18 * * *', function(){
+
+var j = schedule.scheduleJob({hour: 2, minute: 46, dayOfWeek: 0}, function(){
   console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 		var request = require('request');
 		request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
@@ -47,10 +48,10 @@ var j = schedule.scheduleJob('18 * * *', function(){
 		}) 
 });
 
-var k = schedule.scheduleJob('17 * * * *', function(){
-	  console.log('17:Testing');
+var j = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 			var request = require('request');
-			request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('Revalidation Successful');
 			        console.log(body) // Print the google web page.
@@ -62,3 +63,4 @@ var k = schedule.scheduleJob('17 * * * *', function(){
 			     }
 			}) 
 	});
+
