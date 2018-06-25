@@ -48,7 +48,7 @@ var j = schedule.scheduleJob({hour: 2, minute: 46, dayOfWeek: 0}, function(){
 		}) 
 });
 
-var j = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
+var k = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
@@ -63,4 +63,15 @@ var j = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
 			     }
 			}) 
 	});
+
+
+var l = schedule.scheduleJob('05 * * * *', function(){
+		console.log('Heartbeat at ' + new Date());
+	
+	});
+
+var m = schedule.scheduleJob('35 * * * *', function(){
+	console.log('Heartbeat at ' + new Date());
+
+});
 
