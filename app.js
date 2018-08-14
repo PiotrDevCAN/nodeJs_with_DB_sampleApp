@@ -64,14 +64,30 @@ var k = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
 			}) 
 	});
 
-
-var l = schedule.scheduleJob('05 * * * *', function(){
-		console.log('Heartbeat at ' + new Date());
-	
+var l = schedule.scheduleJob({hour: 2, minute: 55, dayOfWeek: 1}, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/recheckPotentialLeavers.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/recheckPotentialLeavers.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('Recheck Successful');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Recheck Error');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
 	});
 
-var m = schedule.scheduleJob('35 * * * *', function(){
-	console.log('Heartbeat at ' + new Date());
 
-});
+//var l = schedule.scheduleJob('05 * * * *', function(){
+//		console.log('Heartbeat at ' + new Date());
+//	
+//	});
+//
+//var m = schedule.scheduleJob('35 * * * *', function(){
+//	console.log('Heartbeat at ' + new Date());
+//
+//});
 
