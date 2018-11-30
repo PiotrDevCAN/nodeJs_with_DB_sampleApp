@@ -81,6 +81,23 @@ var l = schedule.scheduleJob({hour: 2, minute: 55, dayOfWeek: 1}, function(){
 	});
 
 
+var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('ilc Reminder Sent');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending ilc Reminder');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+
 //var l = schedule.scheduleJob('05 * * * *', function(){
 //		console.log('Heartbeat at ' + new Date());
 //	
