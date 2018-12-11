@@ -97,6 +97,76 @@ var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 			}) 
 	});
 
+var cbna = schedule.scheduleJob({month: 1, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('CBN Sent');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending CBN');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+
+var cbnb = schedule.scheduleJob({month: 4, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('CBN Sent');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending CBN');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+
+var cbnc = schedule.scheduleJob({month: 7, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('CBN Sent');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending CBN');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+var cbnd = schedule.scheduleJob({month: 10, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('CBN Sent');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending CBN');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+
+
+
+
 
 //var l = schedule.scheduleJob('05 * * * *', function(){
 //		console.log('Heartbeat at ' + new Date());
