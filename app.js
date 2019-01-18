@@ -190,11 +190,22 @@ var l = schedule.scheduleJob('05 * * * *', function(){
 	
 	});
 
+
+var l2 = schedule.scheduleJob('20 * * * *', function(){
+		console.log('Heartbeat at ' + new Date());
+	
+	});
+
+
 var m = schedule.scheduleJob('35 * * * *', function(){
 	console.log('Heartbeat at ' + new Date());
 
 })
 
-console.log(m);
+var m2 = schedule.scheduleJob('50 * * * *', function(){
+	console.log('Heartbeat at ' + new Date());
+
+})
+
 console.log('scheduleJob entries created');
 
