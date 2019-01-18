@@ -164,6 +164,21 @@ var cbnd = schedule.scheduleJob({month: 10, dayOfMonth: 15, hour:03, minute: 00 
 	});
 
 
+var cbnt = schedule.scheduleJob({month: 01, dayOfMonth: 18, hour:02, minute: 30 }, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('CBN Sent');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending CBN');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
 
 
 
