@@ -166,7 +166,7 @@ var cbnd = schedule.scheduleJob({month: 10, dayOfMonth: 15, hour:03, minute: 00 
 	});
 
 
-var cbnt = schedule.scheduleJob({month: 01, dayOfMonth: 18, hour:14, minute: 37 }, function(){
+var cbnt = schedule.scheduleJob({month: 01, dayOfMonth: 18, hour:14, minute: 50 }, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
