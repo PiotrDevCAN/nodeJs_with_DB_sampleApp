@@ -99,7 +99,7 @@ var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 			}) 
 	});
 
-var cbna = schedule.scheduleJob({month: 1, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+var cbna = schedule.scheduleJob({month: 0, date: 15, hour:03, minute: 00 }, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -116,7 +116,7 @@ var cbna = schedule.scheduleJob({month: 1, dayOfMonth: 15, hour:03, minute: 00 }
 	});
 
 
-var cbnb = schedule.scheduleJob({month: 4, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+var cbnb = schedule.scheduleJob({month: 3, date: 15, hour:03, minute: 00 }, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -133,7 +133,7 @@ var cbnb = schedule.scheduleJob({month: 4, dayOfMonth: 15, hour:03, minute: 00 }
 	});
 
 
-var cbnc = schedule.scheduleJob({month: 7, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+var cbnc = schedule.scheduleJob({month: 6, date: 15, hour:03, minute: 00 }, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -149,7 +149,7 @@ var cbnc = schedule.scheduleJob({month: 7, dayOfMonth: 15, hour:03, minute: 00 }
 			}) 
 	});
 
-var cbnd = schedule.scheduleJob({month: 10, dayOfMonth: 15, hour:03, minute: 00 }, function(){
+var cbnd = schedule.scheduleJob({month: 9, date: 15, hour:03, minute: 00 }, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
