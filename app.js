@@ -34,7 +34,7 @@ var schedule = require('node-schedule');
 
 console.log('Creating the scheduleJob entries');
 
-var j = schedule.scheduleJob({hour: 2, minute: 46, dayOfWeek: 0}, function(){
+var j = schedule.scheduleJob({hour: 2, minute: 46}, function(){
   console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 		var request = require('request');
 		request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
@@ -50,7 +50,7 @@ var j = schedule.scheduleJob({hour: 2, minute: 46, dayOfWeek: 0}, function(){
 		}) 
 });
 
-var k = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
+var k = schedule.scheduleJob({hour: 3, minute: 55}, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
@@ -66,7 +66,7 @@ var k = schedule.scheduleJob({hour: 3, minute: 46, dayOfWeek: 0}, function(){
 			}) 
 	});
 
-var l = schedule.scheduleJob({hour: 2, minute: 55, dayOfWeek: 1}, function(){
+var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/recheckPotentialLeavers.php');
 			var request = require('request');
 			request('http://vbac.w3ibm.mybluemix.net/batchJobs/recheckPotentialLeavers.php', function (error, response, body) {
