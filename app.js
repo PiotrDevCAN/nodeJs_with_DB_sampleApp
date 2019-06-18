@@ -34,6 +34,41 @@ var schedule = require('node-schedule');
 
 console.log('Creating the scheduleJob entries');
 
+var pesA = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
+	  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
+			var request = require('request');
+			request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('PES Recheck Successful');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('PES Recheck Error');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('PES Recheck Successful');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('PES Recheck Error');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+
+
+
 var j = schedule.scheduleJob({hour: 2, minute: 46}, function(){
   console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
 		var request = require('request');
