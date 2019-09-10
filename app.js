@@ -222,5 +222,31 @@ var m2 = schedule.scheduleJob('50 * * * *', function(){
 
 })
 
+
+var rule = new schedule.RecurrenceRule();
+rule.dayOfWeek = [1, new schedule.Range(2, 4)];
+rule.hour = 11;
+rule.minute = 30;
+ 
+var rtb = schedule.scheduleJob(rule, function(){
+	  console.log('About to run : /vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWiontelOffshore.php');
+		var request = require('request');
+		request('http://vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWiontelOffshore.php', function (error, response, body) {
+		    if (!error && response.statusCode == 200) {
+		    	console.log('Notification Sent');
+		        console.log(body) // Print the google web page.
+		     } else {
+		    	 console.log('Error sending notification');
+		    	 console.log(error);
+		    	 console.log(response);
+		    	 console.log(body);
+		     }
+		}) 
+});
+
+
+
+
+
 console.log('scheduleJob entries created');
 
