@@ -229,9 +229,9 @@ rule.hour = 11;
 rule.minute = 30;
  
 var rtb = schedule.scheduleJob(rule, function(){
-	  console.log('About to run : /vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWiontelOffshore.php');
+	  console.log('About to run : /vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWintelOffshore.php');
 		var request = require('request');
-		request('http://vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWiontelOffshore.php', function (error, response, body) {
+		request('http://vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWintelOffshore.php', function (error, response, body) {
 		    if (!error && response.statusCode == 200) {
 		    	console.log('Notification Sent');
 		        console.log(body) // Print the google web page.
