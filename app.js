@@ -66,6 +66,22 @@ var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
 			}) 
 	});
 
+var pesC = schedule.scheduleJob({hour: 3, minute: 29, dayOfWeek: 0}, function(){
+	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/checkPesClearedForLeavers.php');
+			var request = require('request');
+			request('http://vbac.w3ibm.mybluemix.net/batchJobs/checkPesClearedForLeavers.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('PES Cleared Revalidation Successful');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('PES Cleared Revalidation Error');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
 
 
 
