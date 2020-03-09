@@ -277,6 +277,22 @@ var upesRevl = schedule.scheduleJob({hour: 3, minute: 27, dayOfWeek: 0}, functio
 			}) 
 	});
 
+var upesRechk = schedule.scheduleJob({hour: 3, minute: 57, dayOfWeek: 0}, function(){
+	  console.log('About to run : http://upes.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
+			var request = require('request');
+			request('http://upes.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('Recheck Run');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error sending CBN');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
 
 
 
