@@ -260,6 +260,27 @@ var rtb = schedule.scheduleJob(rule, function(){
 		}) 
 });
 
+var rule2 = new schedule.RecurrenceRule();
+rule2.dayOfWeek = [new schedule.Range(1, 5)];
+rule2.hour = 09;
+rule2.minute = 0;
+
+var baudelt = schedule.scheduleJob(rule2, function(){
+	  console.log('About to run : /vbac.w3ibm.mybluemix.net/batchJobs/baudelt_slack_message.php');
+		var request = require('request');
+		request('http://vbac.w3ibm.mybluemix.net/batchJobs/baudelt_slack_message.php', function (error, response, body) {
+		    if (!error && response.statusCode == 200) {
+		    	console.log('Notification Sent');
+		        console.log(body) // Print the google web page.
+		     } else {
+		    	 console.log('Error sending notification');
+		    	 console.log(error);
+		    	 console.log(response);
+		    	 console.log(body);
+		     }
+		}) 
+});
+
 
 var upesRevl = schedule.scheduleJob({hour: 3, minute: 27, dayOfWeek: 0}, function(){
 	  console.log('About to run : http://upes.w3ibm.mybluemix.net/batchJobs/revalidate.php');
