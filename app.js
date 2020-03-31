@@ -262,7 +262,7 @@ var rtb = schedule.scheduleJob(rule, function(){
 
 var rule2 = new schedule.RecurrenceRule();
 rule2.dayOfWeek = [new schedule.Range(1, 5)];
-rule2.hour = 09;
+rule2.hour = 08;
 rule2.minute = 0;
 
 var baudelt = schedule.scheduleJob(rule2, function(){
