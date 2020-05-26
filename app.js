@@ -266,9 +266,11 @@ rule2.hour = 08;
 rule2.minute = 0;
 
 var baudelt = schedule.scheduleJob(rule2, function(){
-	  console.log('About to run : /vbac.w3ibm.mybluemix.net/batchJobs/baudelt_slack_message.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/baudelt_slack_message.php');
 		var request = require('request');
-		request('http://vbac.w3ibm.mybluemix.net/batchJobs/baudelt_slack_message.php', function (error, response, body) {
+		request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/baudelt_slack_message.php', function (error, response, body) {
+			//https://vbac.dal1a.cirrus.ibm.com/batchJobs
+			//http://vbac.w3ibm.mybluemix.net/batchJobs
 		    if (!error && response.statusCode == 200) {
 		    	console.log('Notification Sent');
 		        console.log(body) // Print the google web page.
