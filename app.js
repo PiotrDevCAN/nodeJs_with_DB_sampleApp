@@ -20,6 +20,9 @@ app.use(express.static(__dirname + '/public'));
 
 // get the app environment from Cloud Foundry
 var appEnv = cfenv.getAppEnv();
+//console.log(appEnv);
+//
+//console.log(process.env);
 
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
@@ -34,26 +37,43 @@ var schedule = require('node-schedule');
 
 console.log('Creating the scheduleJob entries');
 
-var pesA = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
-	  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
-			var request = require('request');
-			request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
-			    if (!error && response.statusCode == 200) {
-			    	console.log('PES Recheck Successful');
-			        console.log(body) // Print the google web page.
-			     } else {
-			    	 console.log('PES Recheck Error');
-			    	 console.log(error);
-			    	 console.log(response);
-			    	 console.log(body);
-			     }
-			}) 
-	});
+//var pesA = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
+//	  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
+//			var request = require('request');
+//			request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
+//			    if (!error && response.statusCode == 200) {
+//			    	console.log('PES Recheck Successful');
+//			        console.log(body) // Print the google web page.
+//			     } else {
+//			    	 console.log('PES Recheck Error');
+//			    	 console.log(error);
+//			    	 console.log(response);
+//			    	 console.log(body);
+//			     }
+//			}) 
+//	});
+
+
+console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php');
+var request = require('request');
+request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php', function (error, response, body) {
+    if (!error && response.statusCode == 200) {
+    	console.log('wakeup message successful');
+        console.log(body) // Print the google web page.
+     } else {
+    	 console.log('wakup message error');
+    	 console.log(error);
+    	 console.log(response);
+    	 console.log(body);
+     }
+}) 
+
+
 
 var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('PES Recheck Successful');
 			        console.log(body) // Print the google web page.
@@ -67,9 +87,9 @@ var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
 	});
 
 var pesC = schedule.scheduleJob({hour: 3, minute: 29, dayOfWeek: 0}, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/checkPesClearedForLeavers.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/checkPesClearedForLeavers.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('PES Cleared Revalidation Successful');
 			        console.log(body) // Print the google web page.
@@ -85,26 +105,26 @@ var pesC = schedule.scheduleJob({hour: 3, minute: 29, dayOfWeek: 0}, function(){
 
 
 
-var j = schedule.scheduleJob({hour: 2, minute: 46}, function(){
-  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
-		var request = require('request');
-		request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
-		    if (!error && response.statusCode == 200) {
-		    	console.log('Revalidation Successful');
-		        console.log(body) // Print the google web page.
-		     } else {
-		    	 console.log('Revalidation Error');
-		    	 console.log(error);
-		    	 console.log(response);
-		    	 console.log(body);
-		     }
-		}) 
-});
+//var j = schedule.scheduleJob({hour: 2, minute: 46}, function(){
+//  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
+//		var request = require('request');
+//		request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
+//		    if (!error && response.statusCode == 200) {
+//		    	console.log('Revalidation Successful');
+//		        console.log(body) // Print the google web page.
+//		     } else {
+//		    	 console.log('Revalidation Error');
+//		    	 console.log(error);
+//		    	 console.log(response);
+//		    	 console.log(body);
+//		     }
+//		}) 
+//});
 
 var k = schedule.scheduleJob({hour: 3, minute: 55}, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/revalidate.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/revalidate.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('Revalidation Successful');
 			        console.log(body) // Print the google web page.
@@ -118,9 +138,9 @@ var k = schedule.scheduleJob({hour: 3, minute: 55}, function(){
 	});
 
 var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/recheckPotentialLeavers.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/recheckPotentialLeavers.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/recheckPotentialLeavers.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/recheckPotentialLeavers.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('Recheck Successful');
 			        console.log(body) // Print the google web page.
@@ -135,9 +155,9 @@ var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
 
 
 var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/ilcReminder.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/ilcReminder.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('ilc Reminder Sent');
 			        console.log(body) // Print the google web page.
@@ -151,9 +171,9 @@ var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 	});
 
 var cbna = schedule.scheduleJob({month: 0, date: 15, hour:03, minute: 00 }, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('CBN Sent');
 			        console.log(body) // Print the google web page.
@@ -187,7 +207,7 @@ var cbnb = schedule.scheduleJob({month: 3, date: 15, hour:03, minute: 00 }, func
 var cbnc = schedule.scheduleJob({month: 6, date: 15, hour:03, minute: 00 }, function(){
 	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('CBN Sent');
 			        console.log(body) // Print the google web page.
@@ -201,9 +221,9 @@ var cbnc = schedule.scheduleJob({month: 6, date: 15, hour:03, minute: 00 }, func
 	});
 
 var cbnd = schedule.scheduleJob({month: 9, date: 15, hour:03, minute: 00 }, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('CBN Sent');
 			        console.log(body) // Print the google web page.
@@ -245,9 +265,9 @@ rule.hour = 11;
 rule.minute = 30;
  
 var rtb = schedule.scheduleJob(rule, function(){
-	  console.log('About to run : /vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWintelOffshore.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/ilcReminder4RtbWintelOffshore.php');
 		var request = require('request');
-		request('http://vbac.w3ibm.mybluemix.net/batchJobs/ilcReminder4RtbWintelOffshore.php', function (error, response, body) {
+		request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/ilcReminder4RtbWintelOffshore.php', function (error, response, body) {
 		    if (!error && response.statusCode == 200) {
 		    	console.log('Notification Sent');
 		        console.log(body) // Print the google web page.
