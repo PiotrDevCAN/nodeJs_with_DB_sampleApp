@@ -37,23 +37,6 @@ var schedule = require('node-schedule');
 
 console.log('Creating the scheduleJob entries');
 
-//var pesA = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
-//	  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
-//			var request = require('request');
-//			request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
-//			    if (!error && response.statusCode == 200) {
-//			    	console.log('PES Recheck Successful');
-//			        console.log(body) // Print the google web page.
-//			     } else {
-//			    	 console.log('PES Recheck Error');
-//			    	 console.log(error);
-//			    	 console.log(response);
-//			    	 console.log(body);
-//			     }
-//			}) 
-//	});
-
-
 console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php');
 var request = require('request');
 request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php', function (error, response, body) {
@@ -67,8 +50,6 @@ request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php', 
     	 console.log(body);
      }
 }) 
-
-
 
 var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
 	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php');
@@ -95,41 +76,6 @@ var pesC = schedule.scheduleJob({hour: 3, minute: 29, dayOfWeek: 0}, function(){
 			        console.log(body) // Print the google web page.
 			     } else {
 			    	 console.log('PES Cleared Revalidation Error');
-			    	 console.log(error);
-			    	 console.log(response);
-			    	 console.log(body);
-			     }
-			}) 
-	});
-
-
-
-
-//var j = schedule.scheduleJob({hour: 2, minute: 46}, function(){
-//  console.log('About to run : vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php');
-//		var request = require('request');
-//		request('http://vbac-ut.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
-//		    if (!error && response.statusCode == 200) {
-//		    	console.log('Revalidation Successful');
-//		        console.log(body) // Print the google web page.
-//		     } else {
-//		    	 console.log('Revalidation Error');
-//		    	 console.log(error);
-//		    	 console.log(response);
-//		    	 console.log(body);
-//		     }
-//		}) 
-//});
-
-var k = schedule.scheduleJob({hour: 3, minute: 55}, function(){
-	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/revalidate.php');
-			var request = require('request');
-			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/revalidate.php', function (error, response, body) {
-			    if (!error && response.statusCode == 200) {
-			    	console.log('Revalidation Successful');
-			        console.log(body) // Print the google web page.
-			     } else {
-			    	 console.log('Revalidation Error');
 			    	 console.log(error);
 			    	 console.log(response);
 			    	 console.log(body);
