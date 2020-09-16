@@ -67,7 +67,7 @@ var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
 			}) 
 	});
 
-var pesC = schedule.scheduleJob({hour: 3, minute: 29, dayOfWeek: 0}, function(){
+var pesC = schedule.scheduleJob({hour: 3, minute: 29}, function(){
 	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php');
 			var request = require('request');
 			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php', function (error, response, body) {
@@ -188,22 +188,10 @@ var l = schedule.scheduleJob('05 * * * *', function(){
 	});
 
 
-var l2 = schedule.scheduleJob('20 * * * *', function(){
-		console.log('Heartbeat at ' + new Date());
-	
-	});
-
-
 var m = schedule.scheduleJob('35 * * * *', function(){
 	console.log('Heartbeat at ' + new Date());
 
 })
-
-var m2 = schedule.scheduleJob('50 * * * *', function(){
-	console.log('Heartbeat at ' + new Date());
-
-})
-
 
 var rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [1, new schedule.Range(2, 4)];
