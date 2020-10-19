@@ -271,6 +271,23 @@ var upesRevl = schedule.scheduleJob({hour: 3, minute: 27, dayOfWeek: 0}, functio
 //	});
 
 
+var restAutoClose = schedule.scheduleJob({hour: 1, minute: 15}, function(){
+	  console.log('About to run REST Autoclose');
+			var request = require('request');
+			request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/autoClose.php', function (error, response, body) {
+			    if (!error && response.statusCode == 200) {
+			    	console.log('Autoclose Run');
+			        console.log(body) // Print whatever came back.
+			     } else {
+			    	 console.log('Error running autoclose');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
+
+
 
 
 console.log('scheduleJob entries created');
