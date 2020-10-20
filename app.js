@@ -280,8 +280,8 @@ var restAutoClose = schedule.scheduleJob({hour: 1, minute: 15}, function(){
 			        console.log(body) // Print whatever came back.
 			     } else {
 			    	 console.log('Error running autoclose');
-			    	 console.log(error);
-			    	 console.log(response);
+			    	// console.log(error);
+			    	// console.log(response);
 			    	 console.log(body);
 			     }
 			}) 
