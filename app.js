@@ -134,9 +134,9 @@ var cbna = schedule.scheduleJob({month: 0, date: 15, hour:03, minute: 00 }, func
 
 
 var cbnb = schedule.scheduleJob({month: 3, date: 15, hour:03, minute: 00 }, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 			var request = require('request');
-			request('http://vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php', function (error, response, body) {
+			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('CBN Sent');
 			        console.log(body) // Print the google web page.
@@ -151,7 +151,7 @@ var cbnb = schedule.scheduleJob({month: 3, date: 15, hour:03, minute: 00 }, func
 
 
 var cbnc = schedule.scheduleJob({month: 6, date: 15, hour:03, minute: 00 }, function(){
-	  console.log('About to run : vbac.w3ibm.mybluemix.net/batchJobs/sendCbnEmail.php');
+	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 			var request = require('request');
 			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
@@ -216,7 +216,7 @@ var rtb = schedule.scheduleJob(rule, function(){
 
 var rule2 = new schedule.RecurrenceRule();
 rule2.dayOfWeek = [new schedule.Range(1, 5)];
-rule2.hour = 08;
+rule2.hour = 09;
 rule2.minute = 0;
 
 var baudelt = schedule.scheduleJob(rule2, function(){
