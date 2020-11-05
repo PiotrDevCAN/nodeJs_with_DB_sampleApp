@@ -66,22 +66,28 @@ var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
 			     }
 			}) 
 	});
+	
+	// 
+	// Agreed with Carra we don't need to check offboarded to see if they've left - it's covered by upes.
+	// 5th Nov 2020.
+	//
+	
 
-var pesC = schedule.scheduleJob({hour: 3, minute: 29}, function(){
-	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php');
-			var request = require('request');
-			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php', function (error, response, body) {
-			    if (!error && response.statusCode == 200) {
-			    	console.log('PES Cleared Revalidation Successful');
-			        console.log(body) // Print the google web page.
-			     } else {
-			    	 console.log('PES Cleared Revalidation Error');
-			    	 console.log(error);
-			    	 console.log(response);
-			    	 console.log(body);
-			     }
-			}) 
-	});
+//var pesC = schedule.scheduleJob({hour: 3, minute: 29}, function(){
+//	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php');
+//			var request = require('request');
+//			request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/checkPesClearedForLeavers.php', function (error, response, body) {
+//			    if (!error && response.statusCode == 200) {
+//			    	console.log('PES Cleared Revalidation Successful');
+//			        console.log(body) // Print the google web page.
+//			     } else {
+//			    	 console.log('PES Cleared Revalidation Error');
+//			    	 console.log(error);
+//			    	 console.log(response);
+//			    	 console.log(body);
+//			     }
+//			}) 
+//	});
 
 var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
 	  console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/recheckPotentialLeavers.php');
