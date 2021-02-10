@@ -243,11 +243,10 @@ var baudelt = schedule.scheduleJob(rule2, function(){
 		}) 
 });
 
-
-var upesRevl = schedule.scheduleJob({hour: 3, minute: 27, dayOfWeek: 0}, function(){
-	  console.log('About to run : http://upes.w3ibm.mybluemix.net/batchJobs/revalidate.php');
+var upesRevl = schedule.scheduleJob({hour: 12, minute: 27, dayOfWeek: 3}, function(){
+	  console.log('About to run : https://upes-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/revalidate.php');
 			var request = require('request');
-			request('http://upes.w3ibm.mybluemix.net/batchJobs/revalidate.php', function (error, response, body) {
+			request('https://upes-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/revalidate.php', function (error, response, body) {
 			    if (!error && response.statusCode == 200) {
 			    	console.log('Reval Run');
 			        console.log(body) // Print the google web page.
@@ -260,21 +259,21 @@ var upesRevl = schedule.scheduleJob({hour: 3, minute: 27, dayOfWeek: 0}, functio
 			}) 
 	});
 
-//var upesRechk = schedule.scheduleJob({hour: 3, minute: 57, dayOfWeek: 0}, function(){
-//	  console.log('About to run : http://upes.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php');
-//			var request = require('request');
-//			request('http://upes.w3ibm.mybluemix.net/batchJobs/pesRecheckNotification.php', function (error, response, body) {
-//			    if (!error && response.statusCode == 200) {
-//			    	console.log('Recheck Run');
-//			        console.log(body) // Print the google web page.
-//			     } else {
-//			    	 console.log('Error sending CBN');
-//			    	 console.log(error);
-//			    	 console.log(response);
-//			    	 console.log(body);
-//			     }
-//			}) 
-//	});
+var upesRechk = schedule.scheduleJob({hour: 12, minute: 57, dayOfWeek: 3}, function(){
+	  console.log('About to run : https://upes-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/pesRecheckNotification.php');
+			var request = require('request');
+			request('https://upes-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/pesRecheckNotification.php', function (error, response, body) {
+		    if (!error && response.statusCode == 200) {
+			    	console.log('Recheck Run');
+			        console.log(body) // Print the google web page.
+			     } else {
+			    	 console.log('Error running pesRecheckNotification.php');
+			    	 console.log(error);
+			    	 console.log(response);
+			    	 console.log(body);
+			     }
+			}) 
+	});
 
 
 var restAutoClose = schedule.scheduleJob({hour: 1, minute: 15}, function(){
