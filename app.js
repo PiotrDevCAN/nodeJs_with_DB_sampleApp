@@ -112,6 +112,7 @@ var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
 	}) 
 });
 
+/*
 var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/ilcReminder.php');
 	var request = require('request');
@@ -127,6 +128,7 @@ var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 		}
 	}) 
 });
+*/
 
 var cbna = schedule.scheduleJob({month: 0, date: 15, hour:03, minute: 00 }, function(){
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
@@ -200,11 +202,14 @@ var m = schedule.scheduleJob('35 * * * *', function(){
 	console.log('Heartbeat at ' + new Date());
 })
 
+/*
 var rule = new schedule.RecurrenceRule();
 rule.dayOfWeek = [1, new schedule.Range(2, 4)];
 rule.hour = 11;
 rule.minute = 30;
- 
+*/
+
+/*
 var rtb = schedule.scheduleJob(rule, function(){
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/ilcReminder4RtbWintelOffshore.php');
 	var request = require('request');
@@ -220,12 +225,16 @@ var rtb = schedule.scheduleJob(rule, function(){
 		}
 	}) 
 });
+*/
 
+/*
 var rule2 = new schedule.RecurrenceRule();
 rule2.dayOfWeek = [new schedule.Range(1, 5)];
 rule2.hour = 09;
 rule2.minute = 0;
+*/
 
+/*
 var baudelt = schedule.scheduleJob(rule2, function(){
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/baudelt_slack_message.php');
 	var request = require('request');
@@ -243,6 +252,7 @@ var baudelt = schedule.scheduleJob(rule2, function(){
 		}
 	}) 
 });
+*/
 
 var upesRevl = schedule.scheduleJob({hour: 04, minute: 27, dayOfWeek: 0}, function(){
 	console.log('About to run : https://upes.dal1a.cirrus.ibm.com/batchJobs/revalidate.php'); // upes.dal1a.cirrus.ibm.com/
@@ -292,7 +302,7 @@ var restAutoClose = schedule.scheduleJob({hour: 1, minute: 15}, function(){
 	}) 
 });
 
-var restVBACInactivePersons = schedule.scheduleJob({hour: 1, minute: 45}, function(){
+var restVBACActivePersons = schedule.scheduleJob({hour: 1, minute: 45}, function(){
 	console.log('About to run REST loadVBACActivePersons');
 	var request = require('request');
 	request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/loadVBACActiveResources.php', function (error, response, body) {
