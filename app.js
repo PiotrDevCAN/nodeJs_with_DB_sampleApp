@@ -96,6 +96,22 @@ var pesD = schedule.scheduleJob({hour: 4, minute: 30}, function(){
 	}) 
 });
 
+var pesE = schedule.scheduleJob({hour: 5, minute: 00}, function(){
+	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/updatePesFieldsFromUpesKyndryl.php');
+	var request = require('request');
+	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/updatePesFieldsFromUpesKyndryl.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('PES Update from KPES Successful');
+			console.log(body) // Print the google web page.
+		} else {
+			console.log('PES Update from KPES Error');
+			console.log(error);
+			console.log(response);
+			console.log(body);
+		}
+	}) 
+});
+
 var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/recheckPotentialLeavers.php');
 	var request = require('request');
