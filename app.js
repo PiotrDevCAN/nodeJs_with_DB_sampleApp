@@ -64,6 +64,7 @@ rule.hour = [7,10,13,16];
 rule.minute = 0;
 
 // temporarily run a following script from the UT
+/*
 var ed = schedule.scheduleJob(rule, function(){
 	console.log('About to run vBAC employeeData');
 	var today = new Date();
@@ -85,8 +86,10 @@ var ed = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
+*/
 
 // temporarily run a following script from the UT
+/*
 var restSendRFSData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendRFSData');
 	var today = new Date();
@@ -108,8 +111,10 @@ var restSendRFSData = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
+*/
 
 // temporarily run a following script from the UT
+/*
 var restSendRRData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendRRData');
 	var today = new Date();
@@ -131,8 +136,10 @@ var restSendRRData = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
+*/
 
 // temporarily run a following script from the UT
+/*
 var restSendClaimData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendClaimData');
 	var today = new Date();
@@ -154,6 +161,7 @@ var restSendClaimData = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
+*/
 
 console.log('Creating the scheduleJob entries - Dev new test');
 

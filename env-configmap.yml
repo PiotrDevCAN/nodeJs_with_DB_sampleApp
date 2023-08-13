@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-configmap
+data:
+  SERVER_ADMIN: piotr.tajanowicz@ocean.ibm.com
+  SERVER_NAME: Azure CDI-Scheduler
