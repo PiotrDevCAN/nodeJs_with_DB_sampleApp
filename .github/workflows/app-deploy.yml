@@ -19,8 +19,8 @@ jobs:
           token: ${{secrets.VAULT_TOKEN}}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/dev/w3us/jfrog_piotr  JFROG_USER | JFROG_USER ; 
-            kps-gd-app-cdisched/data/dev/w3us/jfrog_piotr  JFROG_TOKEN | JFROG_TOKEN
+            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ; 
+            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Jfrog
