@@ -41,53 +41,71 @@ testRule.minute = [0,10,20,30,40,50];
 
 console.log(testRule);
 
-var km = schedule.scheduleJob(testRule, function(){
-	console.log('About to run kPES testEmail');
-	var request = require('request');
-	request('https://kpes-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			console.log('kPES - Test Email Sent');
-			console.log(body); // Print the google web page.
-		} else {
-			console.log('Error sending Test Email - kPES');
-			console.log(error);
-			console.log(response);
-			console.log(body);
-		}
+try {
+	var km = schedule.scheduleJob(testRule, function(){
+		console.log('About to run kPES testEmail');
+		var request = require('request');
+		request('https://kpes-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				console.log('kPES - Test Email Sent');
+				console.log(body); // Print the google web page.
+			} else {
+				console.log('Error sending Test Email - kPES');
+				console.log(error);
+				console.log(response);
+				console.log(body);
+			}
+		});
 	});
-});
+} catch (error) {
+	console.error(error);
+	// Expected output: ReferenceError: nonExistentFunction is not defined
+	// (Note: the exact output may be browser-dependent)
+}
 
-var vm = schedule.scheduleJob(testRule, function(){
-	console.log('About to run vBAC testEmail');
-	var request = require('request');
-	request('https://vbac-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			console.log('vBAC - Test Email Sent');
-			console.log(body); // Print the google web page.
-		} else {
-			console.log('Error sending Test Email - vBAC');
-			console.log(error);
-			console.log(response);
-			console.log(body);
-		}
+try {
+	var vm = schedule.scheduleJob(testRule, function(){
+		console.log('About to run vBAC testEmail');
+		var request = require('request');
+		request('https://vbac-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				console.log('vBAC - Test Email Sent');
+				console.log(body); // Print the google web page.
+			} else {
+				console.log('Error sending Test Email - vBAC');
+				console.log(error);
+				console.log(response);
+				console.log(body);
+			}
+		});
 	});
-});
+} catch (error) {
+	console.error(error);
+	// Expected output: ReferenceError: nonExistentFunction is not defined
+	// (Note: the exact output may be browser-dependent)
+}
 
-var rm = schedule.scheduleJob(testRule, function(){
-	console.log('About to run REST testEmail');
-	var request = require('request');
-	request('https://rest-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			console.log('REST - Test Email Sent');
-			console.log(body); // Print the google web page.
-		} else {
-			console.log('Error sending Test Email - REST');
-			console.log(error);
-			console.log(response);
-			console.log(body);
-		}
+try {
+	var rm = schedule.scheduleJob(testRule, function(){
+		console.log('About to run REST testEmail');
+		var request = require('request');
+		request('https://rest-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
+			if (!error && response.statusCode == 200) {
+				console.log('REST - Test Email Sent');
+				console.log(body); // Print the google web page.
+			} else {
+				console.log('Error sending Test Email - REST');
+				console.log(error);
+				console.log(response);
+				console.log(body);
+			}
+		});
 	});
-});
+} catch (error) {
+	console.error(error);
+	// Expected output: ReferenceError: nonExistentFunction is not defined
+	// (Note: the exact output may be browser-dependent)
+}
 
 console.log('Creating the scheduleJob entries - ARO Dev');
 
