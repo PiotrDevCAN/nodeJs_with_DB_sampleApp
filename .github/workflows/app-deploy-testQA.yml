@@ -1,5 +1,5 @@
 ---
-name: ci-build-and-deploy
+name: ci-build-and-deploy-testQA
 on:
   push:
     branches:
@@ -8,6 +8,7 @@ jobs:
   Build:
     runs-on:
       - aro-dev-westus3
+    environment: testQA
     steps:
       - name: Get JFROG Credentials
         id: import-secrets
@@ -16,7 +17,7 @@ jobs:
           url: https://vault.kyndryl.net
           method: token
           namespace: kyndryl/KYNDRYL_PRACTICES/
-          token: ${{secrets.VAULT_TOKEN}}
+          token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
             kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ; 
@@ -45,6 +46,7 @@ jobs:
       - Build
     runs-on:
       - aro-dev-westus3
+    environment: testQA
     steps:
       - name: Checkout Sourcecode
         uses: actions/checkout@v3
@@ -55,7 +57,7 @@ jobs:
           url: https://vault.kyndryl.net
           method: token
           namespace: kyndryl/KYNDRYL_PRACTICES/
-          token: ${{secrets.VAULT_TOKEN}}
+          token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
             kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ;

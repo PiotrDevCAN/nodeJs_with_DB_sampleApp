@@ -35,134 +35,60 @@ app.listen(appEnv.port, '0.0.0.0', function() {
 
 var schedule = require('node-schedule');
 
-/*
 var testRule = new schedule.RecurrenceRule();
 testRule.hour = [1,2,3,4,5,6,7,8,9,10,13,16,18,19,20,21,22,23];
 testRule.minute = [0,10,20,30,40,50];
 
 console.log(testRule);
 
-var tm = schedule.scheduleJob(testRule, function(){
-	console.log('About to run vBAC testEmail');
+var km = schedule.scheduleJob(testRule, function(){
+	console.log('About to run kPES testEmail');
 	var request = require('request');
-	request('https://vbac.dal1a.cirrus.ibm.com/cdi_testMail.php', function (error, response, body) {
+	request('https://kpes-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
-			console.log('Test Email Sent');
+			console.log('kPES - Test Email Sent');
 			console.log(body); // Print the google web page.
 		} else {
-			console.log('Error sending Test Email');
-			// console.log(error);
-			// console.log(response);
-			// console.log(body);
-		}
-	});
-});
-*/
-
-var rule = new schedule.RecurrenceRule();
-rule.hour = [7,10,13,16];
-rule.minute = 0;
-
-// temporarily run a following script from the UT
-/*
-var ed = schedule.scheduleJob(rule, function(){
-	console.log('About to run vBAC employeeData');
-	var today = new Date();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	console.log('Start time ' + time);
-	var request = require('request');
-	request('https://vbac-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/sendEmplyeeData.php', function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			console.log('Send Employee Data extract');
-			var today = new Date();
-			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-			console.log('Finish time ' + time);
-			// console.log(body); // Print the google web page.
-		} else {
-			console.log('Error sending employeeData');
+			console.log('Error sending Test Email - kPES');
 			console.log(error);
 			console.log(response);
-			// console.log(body);
+			console.log(body);
 		}
 	});
 });
-*/
 
-// temporarily run a following script from the UT
-/*
-var restSendRFSData = schedule.scheduleJob(rule, function(){
-	console.log('About to run REST restSendRFSData');
-	var today = new Date();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	console.log('Start time ' + time);
+var vm = schedule.scheduleJob(testRule, function(){
+	console.log('About to run vBAC testEmail');
 	var request = require('request');
-	request('https://rest-2020-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/sendRFSdata.php', function (error, response, body) {
+	request('https://vbac-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
-			console.log('Send RFS extract');
-			var today = new Date();
-			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-			console.log('Finish time ' + time);
-			// console.log(body); // Print whatever came back.
+			console.log('vBAC - Test Email Sent');
+			console.log(body); // Print the google web page.
 		} else {
-			console.log('Error running restSendRFSData');
+			console.log('Error sending Test Email - vBAC');
 			console.log(error);
 			console.log(response);
-			// console.log(body);
+			console.log(body);
 		}
 	});
 });
-*/
 
-// temporarily run a following script from the UT
-/*
-var restSendRRData = schedule.scheduleJob(rule, function(){
-	console.log('About to run REST restSendRRData');
-	var today = new Date();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	console.log('Start time ' + time);
+var rm = schedule.scheduleJob(testRule, function(){
+	console.log('About to run REST testEmail');
 	var request = require('request');
-	request('https://rest-2020-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/sendRRdata.php', function (error, response, body) {
+	request('https://rest-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
-			console.log('Send Resource Requests extract');
-			var today = new Date();
-			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-			console.log('Finish time ' + time);
-			// console.log(body); // Print whatever came back.
+			console.log('REST - Test Email Sent');
+			console.log(body); // Print the google web page.
 		} else {
-			console.log('Error running restSendRRData');
+			console.log('Error sending Test Email - REST');
 			console.log(error);
 			console.log(response);
-			// console.log(body);
+			console.log(body);
 		}
 	});
 });
-*/
 
-// temporarily run a following script from the UT
-/*
-var restSendClaimData = schedule.scheduleJob(rule, function(){
-	console.log('About to run REST restSendClaimData');
-	var today = new Date();
-	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	console.log('Start time ' + time);
-	var request = require('request');
-	request('https://rest-2020-ut.dal1a.ciocloud.nonprod.intranet.ibm.com/batchJobs/sendClaimDatadata.php', function (error, response, body) {
-		if (!error && response.statusCode == 200) {
-			console.log('Send Claim Data extract');
-			var today = new Date();
-			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-			console.log('Finish time ' + time);
-			// console.log(body); // Print whatever came back.
-		} else {
-			console.log('Error running restSendClaimData');
-			console.log(error);
-			console.log(response);
-			// console.log(body);
-		}
-	});
-});
-*/
-
-console.log('Creating the scheduleJob entries - Dev new test');
+console.log('Creating the scheduleJob entries - ARO Dev');
 
 console.log('scheduleJob entries created');
