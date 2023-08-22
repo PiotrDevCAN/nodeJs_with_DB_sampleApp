@@ -1,73 +1,48 @@
 #0 building with "default" instance using docker driver
 
-#1 [internal] load .dockerignore
-#1 transferring context: 67B 0.0s done
-#1 DONE 0.2s
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 489B 0.0s done
+#1 DONE 0.0s
 
-#2 [internal] load build definition from Dockerfile
-#2 transferring dockerfile: 437B 0.0s done
-#2 DONE 0.2s
+#2 [internal] load .dockerignore
+#2 transferring context: 67B 0.0s done
+#2 DONE 0.0s
 
 #3 [internal] load metadata for docker.io/library/node:16
-#3 DONE 4.9s
+#3 DONE 4.4s
 
-#4 [1/5] FROM docker.io/library/node:16@sha256:8c3c7e253d9484a35ed9db3e6ba296d859a382f48602d0321e4734a91311ac95
+#4 [1/5] FROM docker.io/library/node:16@sha256:818b5adc1ee4a04e8ad5efeb70871571efe414315ad7f16844f24f9962ffdc7e
 #4 DONE 0.0s
 
 #5 [2/5] WORKDIR /var/www/html
 #5 CACHED
 
 #6 [internal] load build context
-#6 transferring context: 27.82kB 0.2s
-#6 transferring context: 230.20kB 0.9s done
-#6 DONE 1.0s
+#6 transferring context: 15.17kB 0.1s done
+#6 DONE 0.1s
 
 #7 [3/5] COPY package*.json ./
-#7 DONE 0.3s
+#7 DONE 0.0s
 
-#8 [4/5] RUN npm install
-#8 3.240 npm WARN old lockfile 
-#8 3.240 npm WARN old lockfile The package-lock.json file was created with an old version of npm,
-#8 3.241 npm WARN old lockfile so supplemental metadata must be fetched from the registry.
-#8 3.242 npm WARN old lockfile 
-#8 3.242 npm WARN old lockfile This is a one-time fix-up, please be patient...
-#8 3.243 npm WARN old lockfile 
-#8 7.715 npm WARN EBADENGINE Unsupported engine {
-#8 7.715 npm WARN EBADENGINE   package: 'NodejsStarterApp@0.0.1',
-#8 7.715 npm WARN EBADENGINE   required: { node: '6.x' },
-#8 7.716 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
-#8 7.716 npm WARN EBADENGINE }
-#8 12.22 npm WARN deprecated har-validator@5.0.3: this library is no longer supported
-#8 12.34 npm WARN deprecated uuid@3.2.1: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
-#8 12.57 npm WARN deprecated request@2.87.0: request has been deprecated, see https://github.com/request/request/issues/3142
-#8 14.14 
-#8 14.14 added 112 packages, and audited 113 packages in 12s
-#8 14.18 
-#8 14.18 9 vulnerabilities (5 moderate, 4 high)
-#8 14.18 
-#8 14.18 To address issues that do not require attention, run:
-#8 14.18   npm audit fix
-#8 14.18 
-#8 14.18 Some issues need review, and may require choosing
-#8 14.18 a different dependency.
-#8 14.18 
-#8 14.18 Run `npm audit` for details.
-#8 14.18 npm notice 
-#8 14.18 npm notice New major version of npm available! 8.19.4 -> 9.8.1
-#8 14.18 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.8.1>
-#8 14.18 npm notice Run `npm install -g npm@9.8.1` to update!
-#8 14.18 npm notice 
-#8 DONE 14.6s
+#8 [4/5] RUN npm install npm@latest -g
+#8 7.677 
+#8 7.677 removed 17 packages, changed 101 packages, and audited 250 packages in 7s
+#8 7.677 
+#8 7.677 28 packages are looking for funding
+#8 7.677   run `npm fund` for details
+#8 7.679 
+#8 7.679 found 0 vulnerabilities
+#8 DONE 7.8s
 
 #9 [5/5] COPY . .
-#9 DONE 0.2s
+#9 DONE 0.1s
 
 #10 exporting to image
 #10 exporting layers
-#10 exporting layers 1.0s done
-#10 writing image sha256:d53f56f22f8ba2ea2a63a431bc78e00368afa77760e5443062903f0c1d7b38f4 0.0s done
-#10 naming to docker.io/library/cdi-scheduler 0.0s done
-#10 DONE 1.0s
+#10 exporting layers 0.4s done
+#10 writing image sha256:bf2f17564943633f0fbe4ed91bd85d92ae988e3cc48a19bb70f0fad3524f1197 done
+#10 naming to docker.io/library/cdi-scheduler done
+#10 DONE 0.4s
 
 [1mWhat's Next?
 [0m  View summary of image vulnerabilities and recommendations → [36mdocker scout quickview[0m

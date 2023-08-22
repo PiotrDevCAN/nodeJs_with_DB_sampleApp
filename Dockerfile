@@ -8,7 +8,9 @@ WORKDIR /var/www/html
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN npm install
+# RUN npm init -y
+# RUN npm install
+RUN npm install npm@latest -g
 # If you are building your code for production
 # RUN npm ci --only=production
 
