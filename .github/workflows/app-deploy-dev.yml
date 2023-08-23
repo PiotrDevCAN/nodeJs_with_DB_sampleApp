@@ -34,6 +34,8 @@ jobs:
         uses: docker/setup-buildx-action@v2
       - name: Print SHORT_NAME
         run: echo  ${{ vars.SHORT_NAME }}
+      - name: Print SHORT_NAME 2
+        run: echo  kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
