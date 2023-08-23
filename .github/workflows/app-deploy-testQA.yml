@@ -7,7 +7,7 @@ on:
 jobs:
   Build:
     runs-on:
-      - aro-dev-westus3
+      - aro-testqa-westus3
     environment: testQA
     steps:
       - name: Get JFROG Credentials
@@ -20,8 +20,8 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ; 
-            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN
+            kps-gd-app-cdisched/data/testqa/w3us/jfrog  JFROG_USER | JFROG_USER ; 
+            kps-gd-app-cdisched/data/testqa/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Jfrog
@@ -39,13 +39,13 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: | 
-            kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:dev_${{ github.run_number }}
+            kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:testqa_${{ github.run_number }}
   Deploy:
     name: Deploy
     needs:
       - Build
     runs-on:
-      - aro-dev-westus3
+      - aro-testqa-westus3
     environment: testQA
     steps:
       - name: Checkout Sourcecode
@@ -60,17 +60,17 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ;
-            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN ;
-            kps-gd-app-cdisched/data/dev/w3us/openshift-sa  SERVER_URL | SERVER_URL ;
-            kps-gd-app-cdisched/data/dev/w3us/openshift-sa  SA_TOKEN | SA_TOKEN ;
-            kps-gd-app-cdisched/data/dev/w3us/openshift-sa  NAMESPACE | NAMESPACE
+            kps-gd-app-cdisched/data/testqa/w3us/jfrog  JFROG_USER | JFROG_USER ;
+            kps-gd-app-cdisched/data/testqa/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN ;
+            kps-gd-app-cdisched/data/testqa/w3us/openshift-sa  SERVER_URL | SERVER_URL ;
+            kps-gd-app-cdisched/data/testqa/w3us/openshift-sa  SA_TOKEN | SA_TOKEN ;
+            kps-gd-app-cdisched/data/testqa/w3us/openshift-sa  NAMESPACE | NAMESPACE
       - name: Login to ARO Cluster
         id: set-aro-context
         uses: redhat-actions/oc-login@v1
         with:
           openshift_server_url: ${{ steps.import-secrets.outputs.SERVER_URL }}
-          openshift_token: eyJhbGciOiJSUzI1NiIsImtpZCI6InRUZEpQeHdGSDRxQ3YteDgtQV95SEY3WGcxYkFfcmZOSjB6bjB2eGRSMFEifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJucy1jZGlzY2hlZC1nZC1rcHMtZGV2LXd1czMiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlY3JldC5uYW1lIjoic2EtY2Rpc2NoZWQtZ2Qta3BzLWRldi13dXMzLXRva2VuLTR0bG45Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6InNhLWNkaXNjaGVkLWdkLWtwcy1kZXYtd3VzMyIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50LnVpZCI6IjhjOGIyZjUxLTBlYTYtNGRiNy05ZTQ2LTRjN2ZlZGFjMjVhNyIsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpucy1jZGlzY2hlZC1nZC1rcHMtZGV2LXd1czM6c2EtY2Rpc2NoZWQtZ2Qta3BzLWRldi13dXMzIn0.QaUTIEsDSCrRfRAqeJbOtuY8fLtnnmXf4Us8bAOyff7Yc8w4tGSPGkUpQY8MjCe7UABLD7DVF3ZDxMTyuUzRxlbezPgigzfo_Ps93uanNmXIl4l3YpdmUfApIOYX_rTlyQ2Iy7eXoEMmnGH8ZdACEVFhFZaZGB1qtLYLejXflIA578FFrhNDwUD-4JVabjVx2ZL12GicKrtxo5N66ggNVLxdmoy3ThA7fokRhZ4rtxNVnVEYY2zDrfwmSzoU04or_uYZDncBsP-y-6t5I8QPbEl73hHa_2yotNGzPwl_vC7Ri_AIPgOH_PIQfQP0ekh8tKUfx61RtjZlcXt4IpN-ya1BY7_VS6p96NYqbS-jxOLRkKeI5PiG8WNkIFnBuzLBsLJaAWKZJxUOzMM4CiEMz26gyhrE_A6h6siVCXQ5-fWsMJZ3U0RWSxydJ1UyKsOojhQc_3yVH3HJmhXNgPLl0k7o51m0aNON1PeBcW65WE_c5yJ4Nu7j5WHo6rT0CyDgGQvEZ4-Dcf3WgxC0R2o2HQYcr-qmPJDV_LZEaboMwmwkicEHrAAY-jHE8G21hgOABAUGLSZf7QedZUL0GCzWKKduJcabs6yS-wSS1tPQgRqoMElMuZNe3iefI4cFkGKWwv0ojLvVCFgLhw4RUhFCVnYjVPXWWsNAOQoIYkCQqKM
+          openshift_token: ${{ steps.import-secrets.outputs.SA_TOKEN }}
           insecure_skip_tls_verify: true
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
       - name: Set ImagePullSecrets
@@ -88,7 +88,7 @@ jobs:
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
           images: |
-            kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:dev_${{ github.run_number }}
+            kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:testqa_${{ github.run_number }}
           # Path to the manifest files to be used for deployment. 
           manifests: |
             ./env-configmap.yml
