@@ -7,7 +7,7 @@ metadata:
   name: cdisched-route
   namespace: ns-cdisched-gd-kps-testqa-wus3
 spec:
-  host: cdi-scheduler-testqa.zkpw3uspriv.app.kyndryl.net
+  host: cdischeduler-testqa.zkpw3uspriv.app.kyndryl.net
   port:
     targetPort: 8080
   tls:
