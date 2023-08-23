@@ -5,3 +5,4 @@ metadata:
 data:
   SERVER_ADMIN: piotr.tajanowicz@ocean.ibm.com
   SERVER_NAME: Azure CDI-Scheduler
+  NODE_TLS_REJECT_UNAUTHORIZED: "0"
