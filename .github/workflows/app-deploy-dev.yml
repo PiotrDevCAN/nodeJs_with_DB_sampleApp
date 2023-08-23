@@ -20,7 +20,7 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ; 
+            kps-gd-app-cdisched/data/dev/w3us/jfrog JFROG_USER | JFROG_USER ; 
             kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN
       - name: Checkout
         uses: actions/checkout@v3
@@ -60,7 +60,7 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_USER | JFROG_USER ;
+            kps-gd-app-cdisched/data/dev/w3us/jfrog JFROG_USER | JFROG_USER ;
             kps-gd-app-cdisched/data/dev/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN ;
             kps-gd-app-cdisched/data/dev/w3us/openshift-sa  SERVER_URL | SERVER_URL ;
             kps-gd-app-cdisched/data/dev/w3us/openshift-sa  SA_TOKEN | SA_TOKEN ;
