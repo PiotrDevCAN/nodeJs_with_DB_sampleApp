@@ -27,7 +27,7 @@ jobs:
       - name: Login to Jfrog
         uses: docker/login-action@v2
         with:
-          registry: kyndryl.jfrog.io
+          registry: ${{ vars.JFROG_URL }}
           username: ${{ steps.import-secrets.outputs.JFROG_USER }}
           password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}
       - name: Set up Docker Buildx
@@ -35,7 +35,7 @@ jobs:
       - name: Print SHORT_NAME
         run: echo  ${{ vars.SHORT_NAME }}
       - name: Print SHORT_NAME 2
-        run: echo  kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+        run: echo  ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
       - name: Build and push
         uses: docker/build-push-action@v4
         with:
@@ -43,7 +43,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: | 
-            kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
   Deploy:
     name: Deploy
     needs:
@@ -83,7 +83,7 @@ jobs:
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
           secret-name: cdisched-app-docker-secrets
-          container-registry-url: kyndryl.jfrog.io
+          container-registry-url: ${{ vars.JFROG_URL }}
           container-registry-username: ${{ steps.import-secrets.outputs.JFROG_USER }}
           container-registry-password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}
       - name: Deploy application
@@ -92,7 +92,7 @@ jobs:
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
           images: |
-            kyndryl.jfrog.io/uki-business-intelligence-test-docker-local/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
           # Path to the manifest files to be used for deployment. 
           manifests: |
             ./env-configmap.yml
