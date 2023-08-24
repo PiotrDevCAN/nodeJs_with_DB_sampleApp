@@ -8,7 +8,7 @@ WORKDIR /var/www/html
 # where available (npm@5+)
 COPY package*.json ./
 
-# RUN npm init -y 
+# RUN npm init -y
 # RUN npm install
 # gts-eatools-npm-remote-cache
 RUN npm install npm@latest
