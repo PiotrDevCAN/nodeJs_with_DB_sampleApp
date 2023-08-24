@@ -10,6 +10,16 @@ jobs:
       - aro-dev-westus3
     environment: development
     steps:
+
+      - name: Taggig
+        run: |
+          echo "imageName=${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}"
+      
+      - name: Render k8s manifests
+        run: envsubst < myapp-deployment.template.yml > myapp-deployment.yml 
+      
+      - run: kubectl apply -f ./myapp-deployment.yml
+
       - name: Get JFROG Credentials
         id: import-secrets
         uses: hashicorp/vault-action@v2
@@ -93,7 +103,7 @@ jobs:
           manifests: |
             ./env-configmap.yml
             ./env-secrets.yml
-            ./myapp-deployment-${{ vars.SHORT_NAME }}.yml
+            ./myapp-deployment.yml
             ./myapp-service.yml
             ./myapp-sn-route-${{ vars.SHORT_NAME }}.yml
           # Multiline input where each line contains the name of a docker-registry secret 
