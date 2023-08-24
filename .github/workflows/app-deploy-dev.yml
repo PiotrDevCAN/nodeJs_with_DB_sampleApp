@@ -10,16 +10,6 @@ jobs:
       - aro-dev-westus3
     environment: development
     steps:
-
-      - name: Taggig
-        run: |
-          echo "imageName=${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}" >> $GITHUB_ENV
-      
-      - name: Render k8s manifests
-        run: envsubst < ./myapp-deployment.template.yml > ./myapp-deployment.yml 
-      
-      - run: kubectl apply -f ./myapp-deployment.yml
-
       - name: Get JFROG Credentials
         id: import-secrets
         uses: hashicorp/vault-action@v2
@@ -83,6 +73,16 @@ jobs:
           openshift_token: ${{ steps.import-secrets.outputs.SA_TOKEN }}
           insecure_skip_tls_verify: true
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
+      
+      - name: Taggig
+        run: |
+          echo "imageName=${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}" >> $GITHUB_ENV
+      
+      - name: Render k8s manifests
+        run: envsubst < ./myapp-deployment.template.yml > ./myapp-deployment.yml 
+      
+      - run: kubectl apply -f ./myapp-deployment.yml
+  
       - name: Set ImagePullSecrets
         id: image_secret
         uses: Azure/k8s-create-secret@v4.0
