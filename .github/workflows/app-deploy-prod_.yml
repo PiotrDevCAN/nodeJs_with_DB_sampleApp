@@ -21,7 +21,7 @@ jobs:
           tlsSkipVerify: false
           secrets: |
             kps-gd-app-cdisched/data/prod/w3us/jfrog JFROG_USER | JFROG_USER ; 
-            kps-gd-app-cdisched/data/prod/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN
+            kps-gd-app-cdisched/data/prod/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Jfrog
@@ -61,10 +61,10 @@ jobs:
           tlsSkipVerify: false
           secrets: |
             kps-gd-app-cdisched/data/prod/w3us/jfrog JFROG_USER | JFROG_USER ;
-            kps-gd-app-cdisched/data/prod/w3us/jfrog  JFROG_TOKEN | JFROG_TOKEN ;
-            kps-gd-app-cdisched/data/prod/w3us/openshift-sa  SERVER_URL | SERVER_URL ;
-            kps-gd-app-cdisched/data/prod/w3us/openshift-sa  SA_TOKEN | SA_TOKEN ;
-            kps-gd-app-cdisched/data/prod/w3us/openshift-sa  NAMESPACE | NAMESPACE
+            kps-gd-app-cdisched/data/prod/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN ;
+            kps-gd-app-cdisched/data/prod/w3us/openshift-sa SERVER_URL | SERVER_URL ;
+            kps-gd-app-cdisched/data/prod/w3us/openshift-sa SA_TOKEN | SA_TOKEN ;
+            kps-gd-app-cdisched/data/prod/w3us/openshift-sa NAMESPACE | NAMESPACE
       - name: Login to ARO Cluster
         id: set-aro-context
         uses: redhat-actions/oc-login@v1
