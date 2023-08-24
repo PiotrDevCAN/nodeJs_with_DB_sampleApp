@@ -10,7 +10,8 @@ COPY package*.json ./
 
 # RUN npm init -y
 # RUN npm install
-RUN npm install npm@latest -g
+# gts-eatools-npm-remote-cache
+RUN npm install npm@latest
 RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
