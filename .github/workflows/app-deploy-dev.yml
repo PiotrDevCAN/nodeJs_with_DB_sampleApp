@@ -13,10 +13,10 @@ jobs:
 
       - name: Taggig
         run: |
-          echo "imageName=${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}"
+          echo "imageName=${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}" >> $GITHUB_ENV
       
       - name: Render k8s manifests
-        run: envsubst < myapp-deployment.template.yml > myapp-deployment.yml 
+        run: envsubst < ./myapp-deployment.template.yml > ./myapp-deployment.yml 
       
       - run: kubectl apply -f ./myapp-deployment.yml
 
