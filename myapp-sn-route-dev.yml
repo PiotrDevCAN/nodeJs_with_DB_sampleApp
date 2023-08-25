@@ -4,10 +4,10 @@ metadata:
   labels:
     app: CDISCHED
     type: internal-apps-001
-  name: cdisched-route
+  name: cdisched-route-dev
   namespace: ns-cdisched-gd-kps-dev-wus3
 spec:
-  host: cdisched-dev.zkpw3uspriv.app.kyndryl.net
+  host: cdi-scheduler-dev.zkpw3uspriv.app.kyndryl.net
   port:
     targetPort: 8080
   tls:
