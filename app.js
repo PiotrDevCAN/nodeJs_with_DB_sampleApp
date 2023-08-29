@@ -29,6 +29,11 @@ console.log(appEnv);
 console.log('process.env');
 console.log(process.env);
 
+// define related application URLs
+var kpes_url = process.env.kpes_url;
+var rest_url = process.env.rest_url;
+var vbac_url = process.env.vbac_url;
+
 // start server on the specified port and binding host
 app.listen(appEnv.port, '0.0.0.0', function() {
 	// print a message when the server starts listening
@@ -46,8 +51,9 @@ console.log(testRule);
 try {
 	var km = schedule.scheduleJob(testRule, function(){
 		console.log('About to run kPES testEmail');
+		console.log(kpes_url);
 		var request = require('request');
-		request('https://kpes-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
+		request(kpes_url + 'batchJobs/testEmail.php', function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				console.log('kPES - Test Email Sent');
 				console.log(body); // Print the google web page.
@@ -68,8 +74,9 @@ try {
 try {
 	var vm = schedule.scheduleJob(testRule, function(){
 		console.log('About to run vBAC testEmail');
+		console.log(vbac_url);
 		var request = require('request');
-		request('https://vbac-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
+		request(vbac_url + '/batchJobs/testEmail.php', function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				console.log('vBAC - Test Email Sent');
 				console.log(body); // Print the google web page.
@@ -90,8 +97,9 @@ try {
 try {
 	var rm = schedule.scheduleJob(testRule, function(){
 		console.log('About to run REST testEmail');
+		console.log(rest_url);
 		var request = require('request');
-		request('https://rest-dev.zkpw3uspriv.app.kyndryl.net/batchJobs/testEmail.php', function (error, response, body) {
+		request(rest_url + '/batchJobs/testEmail.php', function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				console.log('REST - Test Email Sent');
 				console.log(body); // Print the google web page.
