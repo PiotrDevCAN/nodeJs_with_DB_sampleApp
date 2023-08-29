@@ -81,7 +81,16 @@ jobs:
           secret-name: cdisched-app-docker-secrets
           container-registry-url: ${{ vars.JFROG_URL }}
           container-registry-username: ${{ steps.import-secrets.outputs.JFROG_USER }}
-          container-registry-password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}
+          container-registry-password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}      
+      - name: Set ImagePullSecrets URLs
+        id: image_secret-urls
+        uses: azure/k8s-actions/k8s-create-secret@master
+        # uses: Azure/k8s-create-secret@v4.0
+        with:
+          namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
+          secret-name: cdisched-app-docker-secrets-urls
+          secret-type: 'generic'
+          arguments: --from-literal=rest_url=${{ vars.REST_URL }} --from-literal=vbac_url=${{ vars.VBAC_URL }} --from-literal=kpes_url=${{ vars.KPES_URL }}           
       - name: Deploy application
         id: deploy-app
         uses: Azure/k8s-deploy@v4
@@ -101,5 +110,6 @@ jobs:
           # Each of these secret names are added under imagePullSecrets field for the workloads found in the input manifest files
           imagepullsecrets: |
             cdisched-app-docker-secrets
+            cdisched-app-docker-secrets-urls
             env-configmap
             env-secrets
