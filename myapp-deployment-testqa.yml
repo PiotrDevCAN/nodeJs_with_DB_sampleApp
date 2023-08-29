@@ -44,3 +44,7 @@ spec:
             name: env-configmap
         - secretRef:
             name: env-secrets
+        - secretRef:
+            name: cdisched-app-docker-secrets
+        - secretRef:
+            name: cdisched-app-docker-secrets-urls
