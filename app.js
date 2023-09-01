@@ -76,7 +76,7 @@ try {
 		console.log('About to run vBAC testEmail');
 		console.log(vbac_url);
 		var request = require('request');
-		request(vbac_url + '/batchJobs/testEmail.php', function (error, response, body) {
+		request(vbac_url + 'batchJobs/testEmail.php', function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				console.log('vBAC - Test Email Sent');
 				console.log(body); // Print the google web page.
@@ -99,7 +99,7 @@ try {
 		console.log('About to run REST testEmail');
 		console.log(rest_url);
 		var request = require('request');
-		request(rest_url + '/batchJobs/testEmail.php', function (error, response, body) {
+		request(rest_url + 'batchJobs/testEmail.php', function (error, response, body) {
 			if (!error && response.statusCode == 200) {
 				console.log('REST - Test Email Sent');
 				console.log(body); // Print the google web page.
