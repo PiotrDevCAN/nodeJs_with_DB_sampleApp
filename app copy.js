@@ -14,6 +14,9 @@ var cfenv = require('cfenv');
 
 // create a new express server
 var app = express();
+app.get('/', (req, res) => {
+	res.send('CDI Scheduler App');
+});
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
@@ -37,18 +40,18 @@ console.log('Creating the scheduleJob entries');
 console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php');
 var request = require('request');
 request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/wakeup_slack_message.php', function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-    	console.log('wakeup message successful');
-        console.log(body); // Print the google web page.
+	if (!error && response.statusCode == 200) {
+		console.log('wakeup message successful');
+		console.log(body); // Print the google web page.
 	} else {
 		console.log('wakup message error');
 		console.log(error);
 		console.log(response);
 		console.log(body);
-    }
+	}
 });
 
-var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
+var pesB = schedule.scheduleJob({ hour: 3, minute: 13, dayOfWeek: 0 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php', function (error, response, body) {
@@ -63,8 +66,8 @@ var pesB = schedule.scheduleJob({hour: 3, minute: 13, dayOfWeek: 0}, function(){
 		}
 	});
 });
-	
-var pesC = schedule.scheduleJob({hour: 3, minute: 29}, function(){
+
+var pesC = schedule.scheduleJob({ hour: 3, minute: 29 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/revalidate.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/revalidate.php', function (error, response, body) {
@@ -80,7 +83,7 @@ var pesC = schedule.scheduleJob({hour: 3, minute: 29}, function(){
 	});
 });
 
-var pesD = schedule.scheduleJob({hour: 4, minute: 30}, function(){
+var pesD = schedule.scheduleJob({ hour: 4, minute: 30 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/updatePesFieldsFromUpes.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/updatePesFieldsFromUpes.php', function (error, response, body) {
@@ -96,7 +99,7 @@ var pesD = schedule.scheduleJob({hour: 4, minute: 30}, function(){
 	});
 });
 
-var pesE = schedule.scheduleJob({hour: 5, minute: 01}, function(){
+var pesE = schedule.scheduleJob({ hour: 5, minute: 01 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/updatePesFieldsFromUpesKyndryl.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/updatePesFieldsFromUpesKyndryl.php', function (error, response, body) {
@@ -112,7 +115,7 @@ var pesE = schedule.scheduleJob({hour: 5, minute: 01}, function(){
 	});
 });
 
-var l = schedule.scheduleJob({hour: 2, minute: 55}, function(){
+var l = schedule.scheduleJob({ hour: 2, minute: 55 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/recheckPotentialLeavers.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/recheckPotentialLeavers.php', function (error, response, body) {
@@ -146,7 +149,7 @@ var m = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 });
 */
 
-var cbna = schedule.scheduleJob({month: 0, date: 15, hour:03, minute: 01 }, function(){
+var cbna = schedule.scheduleJob({ month: 0, date: 15, hour:03, minute: 01 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -162,7 +165,7 @@ var cbna = schedule.scheduleJob({month: 0, date: 15, hour:03, minute: 01 }, func
 	});
 });
 
-var cbnb = schedule.scheduleJob({month: 3, date: 15, hour:03, minute: 01 }, function(){
+var cbnb = schedule.scheduleJob({ month: 3, date: 15, hour:03, minute: 01 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -178,7 +181,7 @@ var cbnb = schedule.scheduleJob({month: 3, date: 15, hour:03, minute: 01 }, func
 	});
 });
 
-var cbnc = schedule.scheduleJob({month: 6, date: 15, hour:03, minute: 01 }, function(){
+var cbnc = schedule.scheduleJob({ month: 6, date: 15, hour:03, minute: 01 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -194,7 +197,7 @@ var cbnc = schedule.scheduleJob({month: 6, date: 15, hour:03, minute: 01 }, func
 	});
 });
 
-var cbnd = schedule.scheduleJob({month: 9, date: 15, hour:03, minute: 01 }, function(){
+var cbnd = schedule.scheduleJob({ month: 9, date: 15, hour:03, minute: 01 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendCbnEmail.php', function (error, response, body) {
@@ -211,7 +214,7 @@ var cbnd = schedule.scheduleJob({month: 9, date: 15, hour:03, minute: 01 }, func
 });
 
 // temporarily run following scripts from the UT
-var ed = schedule.scheduleJob({hour:03, minute: 01}, function(){
+var ed = schedule.scheduleJob({ hour:03, minute: 01 }, function () {
 	console.log('About to run : https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendEmplyeeData.php');
 	var request = require('request');
 	request('https://vbac.dal1a.cirrus.ibm.com/batchJobs/sendEmplyeeData.php', function (error, response, body) {
@@ -227,11 +230,11 @@ var ed = schedule.scheduleJob({hour:03, minute: 01}, function(){
 	});
 });
 
-var l = schedule.scheduleJob('05 * * * *', function(){
+var l = schedule.scheduleJob('05 * * * *', function () {
 	console.log('Heartbeat at ' + new Date());
 });
 
-var m = schedule.scheduleJob('35 * * * *', function(){
+var m = schedule.scheduleJob('35 * * * *', function () {
 	console.log('Heartbeat at ' + new Date());
 });
 
@@ -287,7 +290,7 @@ var baudelt = schedule.scheduleJob(rule2, function(){
 });
 */
 
-var upesRevl = schedule.scheduleJob({hour: 04, minute: 27, dayOfWeek: 0}, function(){
+var upesRevl = schedule.scheduleJob({ hour: 04, minute: 27, dayOfWeek: 0 }, function () {
 	console.log('About to run : https://upes.dal1a.cirrus.ibm.com/batchJobs/revalidate.php'); // upes.dal1a.cirrus.ibm.com/
 	var request = require('request');
 	request('https://upes.dal1a.cirrus.ibm.com/batchJobs/revalidate.php', function (error, response, body) {
@@ -300,14 +303,14 @@ var upesRevl = schedule.scheduleJob({hour: 04, minute: 27, dayOfWeek: 0}, functi
 			console.log(response);
 			console.log(body);
 		}
-	}); 
+	});
 });
 
-var upesRechk = schedule.scheduleJob({hour: 04, minute: 57, dayOfWeek: 0}, function(){
+var upesRechk = schedule.scheduleJob({ hour: 04, minute: 57, dayOfWeek: 0 }, function () {
 	console.log('About to run : https://upes.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php'); // upes.dal1a.cirrus.ibm.com/
 	var request = require('request');
 	request('https://upes.dal1a.cirrus.ibm.com/batchJobs/pesRecheckNotification.php', function (error, response, body) {
-	if (!error && response.statusCode == 200) {
+		if (!error && response.statusCode == 200) {
 			console.log('uPES Recheck Run');
 			console.log(body); // Print the google web page.
 		} else {
@@ -319,7 +322,7 @@ var upesRechk = schedule.scheduleJob({hour: 04, minute: 57, dayOfWeek: 0}, funct
 	});
 });
 
-var kpesRevl = schedule.scheduleJob({hour: 04, minute: 27, dayOfWeek: 0}, function(){
+var kpesRevl = schedule.scheduleJob({ hour: 04, minute: 27, dayOfWeek: 0 }, function () {
 	console.log('About to run : https://upes-new-co.ndal.apps.cirrus.ibm.com/batchJobs/revalidate.php'); // upes-new-co.ndal.apps.cirrus.ibm.com/
 	var request = require('request');
 	request('https://upes-new-co.ndal.apps.cirrus.ibm.com/batchJobs/revalidate.php', function (error, response, body) {
@@ -335,11 +338,11 @@ var kpesRevl = schedule.scheduleJob({hour: 04, minute: 27, dayOfWeek: 0}, functi
 	});
 });
 
-var kpesRechk = schedule.scheduleJob({hour: 04, minute: 57, dayOfWeek: 0}, function(){
+var kpesRechk = schedule.scheduleJob({ hour: 04, minute: 57, dayOfWeek: 0 }, function () {
 	console.log('About to run : https://upes-new-co.ndal.apps.cirrus.ibm.com/batchJobs/pesRecheckNotification.php'); // upes-new-co.ndal.apps.cirrus.ibm.com//
 	var request = require('request');
 	request('https://upes-new-co.ndal.apps.cirrus.ibm.com/batchJobs/pesRecheckNotification.php', function (error, response, body) {
-	if (!error && response.statusCode == 200) {
+		if (!error && response.statusCode == 200) {
 			console.log('KPES Recheck Run');
 			console.log(body); // Print the google web page.
 		} else {
@@ -351,7 +354,7 @@ var kpesRechk = schedule.scheduleJob({hour: 04, minute: 57, dayOfWeek: 0}, funct
 	});
 });
 
-var restAutoClose = schedule.scheduleJob({hour: 1, minute: 15}, function(){
+var restAutoClose = schedule.scheduleJob({ hour: 1, minute: 15 }, function () {
 	console.log('About to run REST Autoclose');
 	var request = require('request');
 	request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/autoClose.php', function (error, response, body) {
@@ -367,7 +370,7 @@ var restAutoClose = schedule.scheduleJob({hour: 1, minute: 15}, function(){
 	});
 });
 
-var restVBACActivePersons = schedule.scheduleJob({hour: 1, minute: 45}, function(){
+var restVBACActivePersons = schedule.scheduleJob({ hour: 1, minute: 45 }, function () {
 	console.log('About to run REST loadVBACActivePersons');
 	var request = require('request');
 	request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/loadVBACActiveResources.php', function (error, response, body) {
@@ -384,7 +387,7 @@ var restVBACActivePersons = schedule.scheduleJob({hour: 1, minute: 45}, function
 });
 
 // temporarily run following scripts from the UT
-var restSendRFSData = schedule.scheduleJob({hour: 1, minute: 45}, function(){
+var restSendRFSData = schedule.scheduleJob({ hour: 1, minute: 45 }, function () {
 	console.log('About to run REST restSendRFSData');
 	var request = require('request');
 	request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/sendRFSdata.php', function (error, response, body) {
@@ -400,7 +403,7 @@ var restSendRFSData = schedule.scheduleJob({hour: 1, minute: 45}, function(){
 	});
 });
 
-var restSendRRData = schedule.scheduleJob({hour: 1, minute: 45}, function(){
+var restSendRRData = schedule.scheduleJob({ hour: 1, minute: 45 }, function () {
 	console.log('About to run REST restSendRRData');
 	var request = require('request');
 	request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/sendRRdata.php', function (error, response, body) {
@@ -416,7 +419,7 @@ var restSendRRData = schedule.scheduleJob({hour: 1, minute: 45}, function(){
 	});
 });
 
-var restSendClaimData = schedule.scheduleJob({hour: 1, minute: 45}, function(){
+var restSendClaimData = schedule.scheduleJob({ hour: 1, minute: 45 }, function () {
 	console.log('About to run REST restSendClaimData');
 	var request = require('request');
 	request('http://rest-2020.dal1a.cirrus.ibm.com/batchJobs/sendClaimDatadata.php', function (error, response, body) {
