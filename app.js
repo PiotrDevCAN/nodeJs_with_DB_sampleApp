@@ -74,6 +74,22 @@ var ed = schedule.scheduleJob(rule, function(){
 /*
 * REST jobs
 */
+var restVBACActivePersons = schedule.scheduleJob({ hour: 1, minute: 45 }, function () {
+	console.log('About to run REST loadVBACActivePersons');
+	var request = require('request');
+	request(rest_url + 'batchJobs/loadVBACActiveResources.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('Load VBAC Active Persons');
+			console.log(body); // Print whatever came back.
+		} else {
+			console.log('Error running loadVBACActivePersons');
+			// console.log(error);
+			// console.log(response);
+			console.log(body);
+		}
+	});
+});
+
 /*
 var restSendRFSData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendRFSData');
