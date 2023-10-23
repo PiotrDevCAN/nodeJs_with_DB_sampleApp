@@ -268,7 +268,6 @@ var restVBACActivePersons = schedule.scheduleJob({ hour: 1, minute: 45 }, functi
 	});
 });
 
-/*
 var restAutoClose = schedule.scheduleJob({ hour: 1, minute: 15 }, function () {
 	console.log('About to run REST Autoclose');
 	var request = require('request');
@@ -284,7 +283,6 @@ var restAutoClose = schedule.scheduleJob({ hour: 1, minute: 15 }, function () {
 		}
 	});
 });
-*/
 
 /*
 var restSendRFSData = schedule.scheduleJob(rule, function(){
