@@ -284,7 +284,6 @@ var restAutoClose = schedule.scheduleJob({ hour: 1, minute: 15 }, function () {
 	});
 });
 
-/*
 var restSendRFSData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendRFSData');
 	var today = new Date();
@@ -306,9 +305,7 @@ var restSendRFSData = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
-*/
 
-/*
 var restSendRRData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendRRData');
 	var today = new Date();
@@ -330,9 +327,7 @@ var restSendRRData = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
-*/
 
-/*
 var restSendClaimData = schedule.scheduleJob(rule, function(){
 	console.log('About to run REST restSendClaimData');
 	var today = new Date();
@@ -354,7 +349,28 @@ var restSendClaimData = schedule.scheduleJob(rule, function(){
 		}
 	});
 });
-*/
+
+var restSendVBACClaimData = schedule.scheduleJob(rule, function(){
+	console.log('About to run REST restSendVBACClaimData');
+	var today = new Date();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	console.log('Start time ' + time);
+	var request = require('request');
+	request(rest_url + 'batchJobs/sendVBACClaimDatadata.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('Send vBAC Claim Data extract');
+			var today = new Date();
+			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			console.log('Finish time ' + time);
+			// console.log(body); // Print whatever came back.
+		} else {
+			console.log('Error running restSendVBACClaimData');
+			console.log(error);
+			console.log(response);
+			// console.log(body);
+		}
+	});
+});
 
 /*
 * kPES jobs
