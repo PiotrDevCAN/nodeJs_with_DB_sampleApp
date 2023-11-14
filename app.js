@@ -145,6 +145,22 @@ var updKPES = schedule.scheduleJob({ hour: 5, minute: 01 }, function () {
 	});
 });
 
+var updWorkerAPI = schedule.scheduleJob({ hour: 5, minute: 30 }, function () {
+	console.log('About to run vBAC updateWorkerIdField');
+	var request = require('request');
+	request(vbac_url + 'batchJobs/updateWorkerIdField.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('Worker ID Update from Worker API Successful');
+			console.log(body); // Print the google web page.
+		} else {
+			console.log('Worker ID Update from Worker API Error');
+			console.log(error);
+			console.log(response);
+			console.log(body);
+		}
+	});
+});
+
 /*
 var ilc = schedule.scheduleJob({hour: 10, minute: 00, dayOfWeek: 5}, function(){
 	console.log('About to run vBAC ilcReminder');
