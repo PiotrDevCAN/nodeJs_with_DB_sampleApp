@@ -271,7 +271,7 @@ var ecd = schedule.scheduleJob(rule, function(){
 	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	console.log('Start time ' + time);
 	var request = require('request');
-	request(vbac_url + 'batchJobs/sendEmplyeeCompleteData.php', function (error, response, body) {
+	request(vbac_url + 'batchJobs/sendEmployeeCompleteData.php', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			console.log('Send Employee Complete Data extract');
 			var today = new Date();
