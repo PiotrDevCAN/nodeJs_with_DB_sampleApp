@@ -249,7 +249,7 @@ var ed = schedule.scheduleJob(rule, function(){
 	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	console.log('Start time ' + time);
 	var request = require('request');
-	request(vbac_url + 'batchJobs/sendEmplyeeData.php', function (error, response, body) {
+	request(vbac_url + 'batchJobs/sendEmployeeData.php', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
 			console.log('Send Employee Data extract');
 			var today = new Date();
@@ -258,6 +258,28 @@ var ed = schedule.scheduleJob(rule, function(){
 			// console.log(body); // Print the google web page.
 		} else {
 			console.log('Error sending employeeData');
+			console.log(error);
+			console.log(response);
+			// console.log(body);
+		}
+	});
+});
+
+var ecd = schedule.scheduleJob(rule, function(){
+	console.log('About to run vBAC employeeCompleteData');
+	var today = new Date();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	console.log('Start time ' + time);
+	var request = require('request');
+	request(vbac_url + 'batchJobs/sendEmplyeeCompleteData.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('Send Employee Complete Data extract');
+			var today = new Date();
+			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			console.log('Finish time ' + time);
+			// console.log(body); // Print the google web page.
+		} else {
+			console.log('Error sending employeeCompleteData');
 			console.log(error);
 			console.log(response);
 			// console.log(body);
