@@ -146,14 +146,14 @@ var updKPES = schedule.scheduleJob({ hour: 5, minute: 01 }, function () {
 });
 
 var updWorkerAPI = schedule.scheduleJob({ hour: 5, minute: 30 }, function () {
-	console.log('About to run vBAC updateWorkerIdField');
+	console.log('About to run vBAC updateWorkerAPIFields');
 	var request = require('request');
-	request(vbac_url + 'batchJobs/updateWorkerIdField.php', function (error, response, body) {
+	request(vbac_url + 'batchJobs/updateWorkerAPIFields.php', function (error, response, body) {
 		if (!error && response.statusCode == 200) {
-			console.log('Worker ID Update from Worker API Successful');
+			console.log('Worker Data Update from Worker API Successful');
 			console.log(body); // Print the google web page.
 		} else {
-			console.log('Worker ID Update from Worker API Error');
+			console.log('Worker Data Update from Worker API Error');
 			console.log(error);
 			console.log(response);
 			console.log(body);
@@ -280,6 +280,28 @@ var ecd = schedule.scheduleJob(rule, function(){
 			// console.log(body); // Print the google web page.
 		} else {
 			console.log('Error sending employeeCompleteData');
+			console.log(error);
+			console.log(response);
+			// console.log(body);
+		}
+	});
+});
+
+var hcr = schedule.scheduleJob(rule, function(){
+	console.log('About to run vBAC Headcount Report');
+	var today = new Date();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	console.log('Start time ' + time);
+	var request = require('request');
+	request(vbac_url + 'batchJobs/sendHeadcountReport.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('Send Headcount Report');
+			var today = new Date();
+			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			console.log('Finish time ' + time);
+			// console.log(body); // Print the google web page.
+		} else {
+			console.log('Error sending Headcount Report');
 			console.log(error);
 			console.log(response);
 			// console.log(body);
