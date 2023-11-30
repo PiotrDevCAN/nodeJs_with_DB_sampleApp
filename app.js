@@ -309,6 +309,28 @@ var hcr = schedule.scheduleJob(rule, function(){
 	});
 });
 
+var rmb = schedule.scheduleJob(rule, function(){
+	console.log('About to run vBAC Recheck Missing Bands');
+	var today = new Date();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	console.log('Start time ' + time);
+	var request = require('request');
+	request(vbac_url + 'batchJobs/recheckMissingBands.php', function (error, response, body) {
+		if (!error && response.statusCode == 200) {
+			console.log('Send Recheck Missing Bands');
+			var today = new Date();
+			var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			console.log('Finish time ' + time);
+			// console.log(body); // Print the google web page.
+		} else {
+			console.log('Error sending Recheck Missing Bands');
+			console.log(error);
+			console.log(response);
+			// console.log(body);
+		}
+	});
+});
+
 /*
 * REST jobs
 */
