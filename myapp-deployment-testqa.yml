@@ -1,17 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: uki-bi-app-2
+  name: app-nodejs-db-poc-deployment
+  labels:
+    app: app-nodejs-db-poc
 spec:
   replicas: 1
   revisionHistoryLimit: 0 # Default to 10 if not specified
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
-      app: uki-bi-app-2
+      app: app-nodejs-db-poc
   template:
     metadata:
       labels:
-        app: uki-bi-app-2
+        app: app-nodejs-db-poc
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -19,8 +23,8 @@ spec:
       automountServiceAccountToken: false
       dnsPolicy: ClusterFirst
       containers:
-      - name: uki-bi-app-2
-        image: kyndryl.jfrog.io/uki-business-intelligence-qa-docker-local/uki-bi-app-2:latest
+      - name: app-nodejs-db-poc
+        image: kyndryl.jfrog.io/uki-business-intelligence-qa-docker-local/app-nodejs-db-poc:latest
         resources:
           limits:
             cpu: 500m
@@ -43,10 +47,6 @@ spec:
           value: Linux
         envFrom:
         - configMapRef:
-            name: env-configmap
+            name: env-configmap-dev
         - secretRef:
-            name: env-secrets
-        - secretRef:
-            name: uki-bi-app-2-app-docker-secrets
-        - secretRef:
-            name: uki-bi-app-2-app-docker-secrets-urls
+            name: app-nodejs-db-poc-docker-secrets

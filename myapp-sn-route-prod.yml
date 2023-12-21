@@ -2,12 +2,12 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   labels:
-    app: CDISCHED
+    app: UKI_BI_NODEJS
     type: internal-apps-001
-  name: uki-bi-app-2-route-prod
-  namespace: ns-uki-bi-app-2-gd-kps-prd-wus3
+  name: app-nodejs-db-poc-route
+  namespace: ns-kpes-gd-kps-prd-wus3
 spec:
-  host: cdi-scheduler.zkpw3uspriv.app.kyndryl.net
+  host: kpes.zkpw3uspriv.app.kyndryl.net
   port:
     targetPort: 8080
   tls:
@@ -15,4 +15,4 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: uki-bi-app-2-svc
+    name: app-nodejs-db-poc-svc

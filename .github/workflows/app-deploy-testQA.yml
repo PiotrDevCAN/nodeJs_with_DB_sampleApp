@@ -9,6 +9,7 @@ jobs:
     runs-on:
       - aro-testqa-westus3
     environment: testQA
+    timeout-minutes: 60
     steps:
       - name: Get JFROG Credentials
         id: import-secrets
@@ -20,8 +21,8 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_USER | JFROG_USER ; 
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN
+            kps-gd-app-kpes/data/dev/w3us/jfrog_piotr JFROG_USER | JFROG_USER ; 
+            kps-gd-app-kpes/data/dev/w3us/jfrog_piotr JFROG_TOKEN | JFROG_TOKEN     
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Jfrog
@@ -39,7 +40,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: | 
-            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/uki-bi-app-2:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/app-nodejs-db-poc:${{ vars.SHORT_NAME }}_${{ github.run_number }}
   Deploy:
     name: Deploy
     needs:
@@ -47,6 +48,7 @@ jobs:
     runs-on:
       - aro-testqa-westus3
     environment: testQA
+    timeout-minutes: 60
     steps:
       - name: Checkout Sourcecode
         uses: actions/checkout@v3
@@ -60,11 +62,24 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_USER | JFROG_USER ;
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN ;
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/openshift-sa SERVER_URL | SERVER_URL ;
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/openshift-sa SA_TOKEN | SA_TOKEN ;
-            kps-gd-app-uki-bi-app-2/data/testqa/w3us/openshift-sa NAMESPACE | NAMESPACE
+            kps-gd-app-kpes/data/dev/w3us/jfrog_piotr JFROG_USER | JFROG_USER ;
+            kps-gd-app-kpes/data/dev/w3us/jfrog_piotr JFROG_TOKEN | JFROG_TOKEN ;
+            kps-gd-app-kpes/data/dev/w3us/openshift-sa SERVER_URL | SERVER_URL ;
+            kps-gd-app-kpes/data/dev/w3us/openshift-sa SA_TOKEN | SA_TOKEN ;
+            kps-gd-app-kpes/data/dev/w3us/openshift-sa NAMESPACE | NAMESPACE ;
+            kps-gd-app-kpes/data/dev/w3us/sqlserver_wus3 server | DB_SERVER ;
+            kps-gd-app-kpes/data/dev/w3us/sqlserver_wus3 database | DB_NAME ;
+            kps-gd-app-kpes/data/dev/w3us/sqlserver_wus3 username | DB_USER_NAME ;
+            kps-gd-app-kpes/data/dev/w3us/sqlserver_wus3 password | DB_USER_PW ;
+            kps-gd-app-kpes/data/dev/w3us/smtpserver host | SMTP_HOST ;
+            kps-gd-app-kpes/data/dev/w3us/smtpserver username | SMTP_USER_NAME ;
+            kps-gd-app-kpes/data/dev/w3us/smtpserver password | SMTP_USER_PW ;
+            kps-gd-app-kpes/data/dev/w3us/SSOserver host | SSO_HOST ;
+            kps-gd-app-kpes/data/dev/w3us/SSOserver client_id | SSO_CLIENT_ID ;
+            kps-gd-app-kpes/data/dev/w3us/SSOserver client_secret | SSO_CLIENT_SECRET ;
+            kps-gd-app-kpes/data/dev/w3us/SSOserver client_api_token | SSO_API_TOKEN ;
+            kps-gd-app-kpes/data/dev/w3us/Redis PORT | REDIS_PORT ;
+            kps-gd-app-kpes/data/dev/w3us/Redis PASSWORD | REDIS_PW
       - name: Login to ARO Cluster
         id: set-aro-context
         uses: redhat-actions/oc-login@v1
@@ -78,26 +93,17 @@ jobs:
         uses: Azure/k8s-create-secret@v4.0
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
-          secret-name: uki-bi-app-2-app-docker-secrets
+          secret-name: app-nodejs-db-poc-docker-secrets
           container-registry-url: ${{ vars.JFROG_URL }}
           container-registry-username: ${{ steps.import-secrets.outputs.JFROG_USER }}
-          container-registry-password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}      
-      - name: Set ImagePullSecrets URLs
-        id: image_secret-urls
-        uses: azure/k8s-actions/k8s-create-secret@master
-        # uses: Azure/k8s-create-secret@v4.0
-        with:
-          namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
-          secret-name: uki-bi-app-2-app-docker-secrets-urls
-          secret-type: 'generic'
-          arguments: --from-literal=rest_url=${{ vars.REST_URL }} --from-literal=vbac_url=${{ vars.VBAC_URL }} --from-literal=kpes_url=${{ vars.KPES_URL }}           
+          container-registry-password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}
       - name: Deploy application
         id: deploy-app
         uses: Azure/k8s-deploy@v4
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
           images: |
-            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/uki-bi-app-2:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/app-nodejs-db-poc:${{ vars.SHORT_NAME }}_${{ github.run_number }}
           # Path to the manifest files to be used for deployment. 
           manifests: |
             ./env-configmap.yml
@@ -109,7 +115,6 @@ jobs:
           # that has already been setup within the cluster. 
           # Each of these secret names are added under imagePullSecrets field for the workloads found in the input manifest files
           imagepullsecrets: |
-            uki-bi-app-2-app-docker-secrets
-            uki-bi-app-2-app-docker-secrets-urls
+            app-nodejs-db-poc-docker-secrets
             env-configmap
             env-secrets
