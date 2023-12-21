@@ -3,7 +3,7 @@ name: ci-build-and-deploy-testQA
 on:
   push:
     branches:
-      - testqa
+      - app_nodejs_db_testqa
 jobs:
   Build:
     runs-on:
