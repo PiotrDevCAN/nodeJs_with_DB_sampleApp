@@ -1,5 +1,5 @@
 ---
-name: ci-build-and-deploy-development
+name: app-2-ci-build-and-deploy-development
 on:
   push:
     branches:
