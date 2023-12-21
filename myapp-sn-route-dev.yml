@@ -4,8 +4,8 @@ metadata:
   labels:
     app: CDISCHED
     type: internal-apps-001
-  name: cdisched-route-dev
-  namespace: ns-cdisched-gd-kps-dev-wus3
+  name: uki-bi-app-2-route-dev
+  namespace: ns-uki-bi-app-2-gd-kps-dev-wus3
 spec:
   host: cdi-scheduler-dev.zkpw3uspriv.app.kyndryl.net
   port:
@@ -15,4 +15,4 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: cdisched-svc
+    name: uki-bi-app-2-svc

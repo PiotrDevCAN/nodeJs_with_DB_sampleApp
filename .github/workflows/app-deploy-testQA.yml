@@ -20,8 +20,8 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/testqa/w3us/jfrog JFROG_USER | JFROG_USER ; 
-            kps-gd-app-cdisched/data/testqa/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_USER | JFROG_USER ; 
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN
       - name: Checkout
         uses: actions/checkout@v3
       - name: Login to Jfrog
@@ -39,7 +39,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: | 
-            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/uki-bi-app-2:${{ vars.SHORT_NAME }}_${{ github.run_number }}
   Deploy:
     name: Deploy
     needs:
@@ -60,11 +60,11 @@ jobs:
           token: ${{ secrets.VAULT_TOKEN }}
           tlsSkipVerify: false
           secrets: |
-            kps-gd-app-cdisched/data/testqa/w3us/jfrog JFROG_USER | JFROG_USER ;
-            kps-gd-app-cdisched/data/testqa/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN ;
-            kps-gd-app-cdisched/data/testqa/w3us/openshift-sa SERVER_URL | SERVER_URL ;
-            kps-gd-app-cdisched/data/testqa/w3us/openshift-sa SA_TOKEN | SA_TOKEN ;
-            kps-gd-app-cdisched/data/testqa/w3us/openshift-sa NAMESPACE | NAMESPACE
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_USER | JFROG_USER ;
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/jfrog JFROG_TOKEN | JFROG_TOKEN ;
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/openshift-sa SERVER_URL | SERVER_URL ;
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/openshift-sa SA_TOKEN | SA_TOKEN ;
+            kps-gd-app-uki-bi-app-2/data/testqa/w3us/openshift-sa NAMESPACE | NAMESPACE
       - name: Login to ARO Cluster
         id: set-aro-context
         uses: redhat-actions/oc-login@v1
@@ -78,7 +78,7 @@ jobs:
         uses: Azure/k8s-create-secret@v4.0
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
-          secret-name: cdisched-app-docker-secrets
+          secret-name: uki-bi-app-2-app-docker-secrets
           container-registry-url: ${{ vars.JFROG_URL }}
           container-registry-username: ${{ steps.import-secrets.outputs.JFROG_USER }}
           container-registry-password: ${{ steps.import-secrets.outputs.JFROG_TOKEN }}      
@@ -88,7 +88,7 @@ jobs:
         # uses: Azure/k8s-create-secret@v4.0
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
-          secret-name: cdisched-app-docker-secrets-urls
+          secret-name: uki-bi-app-2-app-docker-secrets-urls
           secret-type: 'generic'
           arguments: --from-literal=rest_url=${{ vars.REST_URL }} --from-literal=vbac_url=${{ vars.VBAC_URL }} --from-literal=kpes_url=${{ vars.KPES_URL }}           
       - name: Deploy application
@@ -97,7 +97,7 @@ jobs:
         with:
           namespace: ${{ steps.import-secrets.outputs.NAMESPACE }}
           images: |
-            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/cdisched:${{ vars.SHORT_NAME }}_${{ github.run_number }}
+            ${{ vars.JFROG_URL }}/${{ vars.JFROG_CONTAINER }}/uki-bi-app-2:${{ vars.SHORT_NAME }}_${{ github.run_number }}
           # Path to the manifest files to be used for deployment. 
           manifests: |
             ./env-configmap.yml
@@ -109,7 +109,7 @@ jobs:
           # that has already been setup within the cluster. 
           # Each of these secret names are added under imagePullSecrets field for the workloads found in the input manifest files
           imagepullsecrets: |
-            cdisched-app-docker-secrets
-            cdisched-app-docker-secrets-urls
+            uki-bi-app-2-app-docker-secrets
+            uki-bi-app-2-app-docker-secrets-urls
             env-configmap
             env-secrets

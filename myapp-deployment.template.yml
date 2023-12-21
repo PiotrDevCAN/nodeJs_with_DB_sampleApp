@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cdisched
+  name: uki-bi-app-2
 spec:
   replicas: 1
   revisionHistoryLimit: 0 # Default to 10 if not specified
   selector:
     matchLabels:
-      app: cdisched
+      app: uki-bi-app-2
   template:
     metadata:
       labels:
-        app: cdisched
+        app: uki-bi-app-2
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5
@@ -19,7 +19,7 @@ spec:
       automountServiceAccountToken: false
       dnsPolicy: ClusterFirst
       containers:
-      - name: cdisched
+      - name: uki-bi-app-2
         image: $imageName
         resources:
           limits:

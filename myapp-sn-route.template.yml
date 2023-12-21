@@ -4,7 +4,7 @@ metadata:
   labels:
     app: CDISCHED
     type: internal-apps-001
-  name: cdisched-route
+  name: uki-bi-app-2-route
   namespace: $namespace
 spec:
   host: $hostName
@@ -15,4 +15,4 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: cdisched-svc
+    name: uki-bi-app-2-svc

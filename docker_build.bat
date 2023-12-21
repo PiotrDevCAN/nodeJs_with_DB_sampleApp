@@ -1,2 +1,2 @@
-docker build -t cdi-scheduler --no-cache  --progress=plain  . 2> build.log
-docker run -dit -p 8085:8080  --name cdi-scheduler -v C:/CETAapps/CDI-SCHEDULER:/var/www/html --env-file C:/CETAapps/CDI-SCHEDULER/dev_env.list cdi-scheduler
+docker build -t uk_bi_app_2 --no-cache  --progress=plain  . 2> build.log
+docker run -dit -p 8092:8080  --name uk_bi_app_2 -v C:/CETAapps/UK_BI_apps/App_2:/var/www/html --env-file C:/CETAapps/UK_BI_apps/App_2/dev_env.list uk_bi_app_2

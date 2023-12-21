@@ -1,94 +1,112 @@
 #0 building with "default" instance using docker driver
 
 #1 [internal] load build definition from Dockerfile
-#1 transferring dockerfile:
-#1 transferring dockerfile: 535B 0.0s done
-#1 DONE 0.2s
+#1 DONE 0.0s
 
 #2 [internal] load .dockerignore
-#2 transferring context: 67B 0.1s done
-#2 DONE 0.2s
+#2 ...
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 ...
+
+#2 [internal] load .dockerignore
+#2 transferring context:
+#2 transferring context: 67B 0.2s done
+#2 ...
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 535B 0.2s done
+#1 DONE 53.7s
+
+#2 [internal] load .dockerignore
+#2 DONE 53.8s
 
 #3 [internal] load metadata for docker.io/library/node:16
-#3 DONE 6.6s
+#3 DONE 4.8s
 
-#4 [1/6] FROM docker.io/library/node:16@sha256:818b5adc1ee4a04e8ad5efeb70871571efe414315ad7f16844f24f9962ffdc7e
+#4 [1/6] FROM docker.io/library/node:16@sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b
 #4 DONE 0.0s
 
 #5 [2/6] WORKDIR /var/www/html
 #5 CACHED
 
 #6 [internal] load build context
-#6 transferring context:
-#6 transferring context: 464.87kB 4.8s done
-#6 DONE 5.6s
+#6 transferring context: 28.44kB 0.1s
+#6 transferring context: 209.03kB 0.9s done
+#6 DONE 1.0s
 
 #7 [3/6] COPY package*.json ./
-#7 DONE 0.6s
+#7 DONE 0.4s
 
 #8 [4/6] RUN npm install npm@latest
-#8 11.08 npm WARN old lockfile 
-#8 11.08 npm WARN old lockfile The package-lock.json file was created with an old version of npm,
-#8 11.08 npm WARN old lockfile so supplemental metadata must be fetched from the registry.
-#8 11.08 npm WARN old lockfile 
-#8 11.08 npm WARN old lockfile This is a one-time fix-up, please be patient...
-#8 11.08 npm WARN old lockfile 
-#8 16.87 npm WARN EBADENGINE Unsupported engine {
-#8 16.87 npm WARN EBADENGINE   package: 'NodejsStarterApp@0.0.1',
-#8 16.87 npm WARN EBADENGINE   required: { node: '6.x' },
-#8 16.87 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
-#8 16.87 npm WARN EBADENGINE }
-#8 24.69 npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
-#8 24.85 npm WARN deprecated har-validator@5.1.5: this library is no longer supported
-#8 25.02 npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
-#8 26.38 
-#8 26.38 added 117 packages, and audited 366 packages in 18s
-#8 26.38 
-#8 26.38 39 packages are looking for funding
-#8 26.38   run `npm fund` for details
-#8 26.39 
-#8 26.39 2 moderate severity vulnerabilities
-#8 26.39 
-#8 26.39 Some issues need review, and may require choosing
-#8 26.39 a different dependency.
-#8 26.39 
-#8 26.39 Run `npm audit` for details.
-#8 26.39 npm notice 
-#8 26.39 npm notice New major version of npm available! 8.19.4 -> 9.8.1
-#8 26.39 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v9.8.1>
-#8 26.39 npm notice Run `npm install -g npm@9.8.1` to update!
-#8 26.39 npm notice 
-#8 DONE 26.8s
+#8 9.345 npm WARN EBADENGINE Unsupported engine {
+#8 9.345 npm WARN EBADENGINE   package: '@azure/core-rest-pipeline@1.13.0',
+#8 9.349 npm WARN EBADENGINE   required: { node: '>=18.0.0' },
+#8 9.357 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+#8 9.357 npm WARN EBADENGINE }
+#8 9.364 npm WARN EBADENGINE Unsupported engine {
+#8 9.365 npm WARN EBADENGINE   package: 'npm@10.2.5',
+#8 9.369 npm WARN EBADENGINE   required: { node: '^18.17.0 || >=20.5.0' },
+#8 9.370 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+#8 9.370 npm WARN EBADENGINE }
+#8 37.20 npm WARN deprecated har-validator@5.1.5: this library is no longer supported
+#8 38.63 npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+#8 39.22 npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+#8 50.45 
+#8 50.45 added 239 packages, and audited 475 packages in 45s
+#8 50.45 
+#8 50.45 80 packages are looking for funding
+#8 50.45   run `npm fund` for details
+#8 50.47 
+#8 50.47 2 moderate severity vulnerabilities
+#8 50.47 
+#8 50.47 Some issues need review, and may require choosing
+#8 50.47 a different dependency.
+#8 50.47 
+#8 50.47 Run `npm audit` for details.
+#8 50.48 npm notice 
+#8 50.48 npm notice New major version of npm available! 8.19.4 -> 10.2.5
+#8 50.48 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v10.2.5>
+#8 50.48 npm notice Run `npm install -g npm@10.2.5` to update!
+#8 50.48 npm notice 
+#8 DONE 51.7s
 
 #9 [5/6] RUN npm install
-#9 1.702 npm WARN EBADENGINE Unsupported engine {
-#9 1.703 npm WARN EBADENGINE   package: 'NodejsStarterApp@0.0.1',
-#9 1.703 npm WARN EBADENGINE   required: { node: '6.x' },
-#9 1.704 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
-#9 1.704 npm WARN EBADENGINE }
-#9 3.006 
-#9 3.006 up to date, audited 366 packages in 2s
-#9 3.006 
-#9 3.006 39 packages are looking for funding
-#9 3.006   run `npm fund` for details
-#9 3.018 
-#9 3.018 2 moderate severity vulnerabilities
-#9 3.018 
-#9 3.018 Some issues need review, and may require choosing
-#9 3.018 a different dependency.
-#9 3.018 
-#9 3.018 Run `npm audit` for details.
-#9 DONE 3.1s
+#9 4.945 npm WARN EBADENGINE Unsupported engine {
+#9 4.946 npm WARN EBADENGINE   package: '@azure/core-rest-pipeline@1.13.0',
+#9 4.947 npm WARN EBADENGINE   required: { node: '>=18.0.0' },
+#9 4.948 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+#9 4.949 npm WARN EBADENGINE }
+#9 4.980 npm WARN EBADENGINE Unsupported engine {
+#9 4.980 npm WARN EBADENGINE   package: 'npm@10.2.5',
+#9 4.981 npm WARN EBADENGINE   required: { node: '^18.17.0 || >=20.5.0' },
+#9 4.981 npm WARN EBADENGINE   current: { node: 'v16.20.2', npm: '8.19.4' }
+#9 4.981 npm WARN EBADENGINE }
+#9 7.664 
+#9 7.664 up to date, audited 475 packages in 6s
+#9 7.664 
+#9 7.664 80 packages are looking for funding
+#9 7.664   run `npm fund` for details
+#9 7.689 
+#9 7.689 2 moderate severity vulnerabilities
+#9 7.689 
+#9 7.689 Some issues need review, and may require choosing
+#9 7.689 a different dependency.
+#9 7.689 
+#9 7.689 Run `npm audit` for details.
+#9 DONE 7.8s
 
 #10 [6/6] COPY . .
-#10 DONE 1.5s
+#10 DONE 4.1s
 
 #11 exporting to image
 #11 exporting layers
-#11 exporting layers 1.2s done
-#11 writing image sha256:163e35de97cc61cca9827ffe5d45cf3280339a14527f7ae03d3b100e6c1504d8 done
-#11 naming to docker.io/library/cdi-scheduler done
-#11 DONE 1.2s
+#11 exporting layers 6.2s done
+#11 writing image sha256:5bd5a93755652dcc6a16ecbf401cd82da2072f4bb38278012b67a4c6bb8d9521 0.0s done
+#11 naming to docker.io/library/uk_bi_app_2
+#11 naming to docker.io/library/uk_bi_app_2 0.2s done
+#11 DONE 6.4s
 
 [1mWhat's Next?
 [0m  View summary of image vulnerabilities and recommendations → [36mdocker scout quickview[0m

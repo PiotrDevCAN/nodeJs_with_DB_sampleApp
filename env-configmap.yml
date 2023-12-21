@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: env-configmap
 data:
-  SERVER_ADMIN: piotr.tajanowicz@ocean.ibm.com
-  SERVER_NAME: Azure CDI-Scheduler
+  SERVER_ADMIN: piotr.tajanowicz@kyndryl.com
+  SERVER_NAME: Azure UK Business Intelligence sample app 2
   NODE_TLS_REJECT_UNAUTHORIZED: "0"
