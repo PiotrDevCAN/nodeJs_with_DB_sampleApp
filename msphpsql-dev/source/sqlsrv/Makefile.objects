@@ -1,0 +1,32 @@
+conn.lo: /var/www/html/msphpsql-dev/source/sqlsrv/conn.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/conn.cpp -o conn.lo 
+util.lo: /var/www/html/msphpsql-dev/source/sqlsrv/util.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/util.cpp -o util.lo 
+init.lo: /var/www/html/msphpsql-dev/source/sqlsrv/init.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/init.cpp -o init.lo 
+stmt.lo: /var/www/html/msphpsql-dev/source/sqlsrv/stmt.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/stmt.cpp -o stmt.lo 
+shared/core_conn.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_conn.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_conn.cpp -o shared/core_conn.lo 
+shared/core_results.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_results.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_results.cpp -o shared/core_results.lo 
+shared/core_stream.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_stream.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_stream.cpp -o shared/core_stream.lo 
+shared/core_init.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_init.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_init.cpp -o shared/core_init.lo 
+shared/core_stmt.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_stmt.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_stmt.cpp -o shared/core_stmt.lo 
+shared/core_util.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_util.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/core_util.cpp -o shared/core_util.lo 
+shared/FormattedPrint.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/FormattedPrint.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/FormattedPrint.cpp -o shared/FormattedPrint.lo 
+shared/localizationimpl.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/localizationimpl.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/localizationimpl.cpp -o shared/localizationimpl.lo 
+shared/StringFunctions.lo: /var/www/html/msphpsql-dev/source/sqlsrv/shared/StringFunctions.cpp
+	$(LIBTOOL) --mode=compile $(CXX) -std=c++11 -I. -I/var/www/html/msphpsql-dev/source/sqlsrv $(COMMON_FLAGS) $(CXXFLAGS_CLEAN) $(EXTRA_CXXFLAGS)  -c /var/www/html/msphpsql-dev/source/sqlsrv/shared/StringFunctions.cpp -o shared/StringFunctions.lo 
+$(phplibdir)/sqlsrv.la: ./sqlsrv.la
+	$(LIBTOOL) --mode=install cp ./sqlsrv.la $(phplibdir)
+
+./sqlsrv.la: $(shared_objects_sqlsrv) $(SQLSRV_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS)  -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_sqlsrv) $(SQLSRV_SHARED_LIBADD)
+
